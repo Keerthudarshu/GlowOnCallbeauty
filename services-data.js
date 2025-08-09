@@ -9,7 +9,10 @@ const servicesData = {
             discountedPrice: 1799,
             duration: 60,
             image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=400&h=300&fit=crop&crop=face',
-            category: 'facials'
+            category: 'facials',
+            benefits: ['Deep hydration', 'Removes blackheads', 'Instant glow', 'Non-invasive'],
+            procedure: 'Cleanse → Extract → Hydrate → Protect',
+            idealFor: 'All skin types, especially dry and congested skin'
         },
         {
             id: 'collagen-renewal',
@@ -19,7 +22,10 @@ const servicesData = {
             discountedPrice: 2999,
             duration: 75,
             image: 'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=400&h=300&fit=crop&crop=face',
-            category: 'facials'
+            category: 'facials',
+            benefits: ['Reduces fine lines', 'Firms skin', 'Boosts collagen', 'Anti-aging'],
+            procedure: 'Deep cleanse → Collagen mask → LED therapy → Moisturize',
+            idealFor: 'Mature skin, fine lines, loss of elasticity'
         },
         {
             id: 'vitamin-c-glow',
@@ -29,7 +35,10 @@ const servicesData = {
             discountedPrice: 2399,
             duration: 60,
             image: 'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=400&h=300&fit=crop&crop=face',
-            category: 'facials'
+            category: 'facials',
+            benefits: ['Brightens skin', 'Reduces dark spots', 'Antioxidant protection', 'Even skin tone'],
+            procedure: 'Cleanse → Vitamin C serum → Brightening mask → Sun protection',
+            idealFor: 'Dull skin, dark spots, uneven skin tone'
         },
         {
             id: 'korean-glass-skin',
@@ -39,7 +48,10 @@ const servicesData = {
             discountedPrice: 2499,
             duration: 90,
             image: 'https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=400&h=300&fit=crop&crop=face',
-            category: 'facials'
+            category: 'facials',
+            benefits: ['Glass-like glow', 'Deep hydration', 'Poreless appearance', 'Dewy finish'],
+            procedure: 'Double cleanse → Exfoliate → Essence → Mask → Seal moisture',
+            idealFor: 'All skin types seeking the Korean glass skin effect'
         },
         {
             id: 'charcoal-detox',
@@ -49,7 +61,10 @@ const servicesData = {
             discountedPrice: 2599,
             duration: 60,
             image: 'https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=400&h=300&fit=crop&crop=face',
-            category: 'facials'
+            category: 'facials',
+            benefits: ['Deep pore cleansing', 'Removes toxins', 'Controls oil', 'Purifies skin'],
+            procedure: 'Steam → Charcoal mask → Extraction → Soothing serum',
+            idealFor: 'Oily skin, acne-prone skin, clogged pores'
         },
         {
             id: 'golden-glow',
@@ -59,7 +74,10 @@ const servicesData = {
             discountedPrice: 2699,
             duration: 75,
             image: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=400&h=300&fit=crop&crop=face',
-            category: 'facials'
+            category: 'facials',
+            benefits: ['Luxurious experience', 'Anti-aging', 'Radiant glow', 'Improves circulation'],
+            procedure: 'Cleanse → Gold mask → Massage → Hydrating serum',
+            idealFor: 'Special occasions, mature skin, dull complexion'
         }
     ],
     
@@ -72,7 +90,10 @@ const servicesData = {
             discountedPrice: 1799,
             duration: 120,
             image: 'https://images.unsplash.com/photo-1583001809137-ca80ce48835c?w=400&h=300&fit=crop&crop=eye',
-            category: 'lash-extensions'
+            category: 'lash-extensions',
+            benefits: ['Natural look', 'Long-lasting', 'Waterproof', 'No mascara needed'],
+            procedure: 'Cleanse → Isolate → Apply extensions → Set',
+            idealFor: 'First-time users, natural everyday look'
         },
         {
             id: 'hybrid-lash',
@@ -82,7 +103,10 @@ const servicesData = {
             discountedPrice: 2999,
             duration: 150,
             image: 'https://images.unsplash.com/photo-1607025952930-4e1b52c4e02e?w=400&h=300&fit=crop&crop=eye',
-            category: 'lash-extensions'
+            category: 'lash-extensions',
+            benefits: ['Fuller lashes', 'Natural + glamorous', 'Customizable density', 'Long-lasting'],
+            procedure: 'Cleanse → Map design → Classic + volume application → Seal',
+            idealFor: 'Those wanting more fullness than classic but less than volume'
         },
         {
             id: 'lash-lift',
@@ -92,7 +116,10 @@ const servicesData = {
             discountedPrice: 1500,
             duration: 60,
             image: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=300&fit=crop&crop=eye',
-            category: 'lash-extensions'
+            category: 'lash-extensions',
+            benefits: ['Natural enhancement', 'Low maintenance', 'No extensions needed', 'Curl lasts 6-8 weeks'],
+            procedure: 'Cleanse → Apply lifting solution → Set curl → Tint (optional)',
+            idealFor: 'Those with natural lashes wanting lift and curl'
         }
     ],
     
@@ -106,7 +133,10 @@ const servicesData = {
             duration: 30,
             image: 'https://images.unsplash.com/photo-1554127960-8f8e9c0b0d4a?w=400&h=300&fit=crop&crop=face',
             category: 'eyebrows',
-            isAddon: true
+            isAddon: true,
+            benefits: ['Enhanced definition', 'Long-lasting color', 'Natural look', 'Fills sparse areas'],
+            procedure: 'Clean → Apply tint → Process → Remove excess',
+            idealFor: 'Light or sparse eyebrows, special occasions'
         },
         {
             id: 'eyebrow-lamination',
@@ -116,7 +146,10 @@ const servicesData = {
             discountedPrice: 1499,
             duration: 45,
             image: 'https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=400&h=300&fit=crop&crop=face',
-            category: 'eyebrows'
+            category: 'eyebrows',
+            benefits: ['Fuller appearance', 'Lasts 6-8 weeks', 'Tames unruly hairs', 'Low maintenance'],
+            procedure: 'Cleanse → Lifting solution → Neutralize → Set',
+            idealFor: 'Unruly brows, those wanting fuller brow look'
         }
     ],
     
@@ -130,7 +163,10 @@ const servicesData = {
             duration: 30,
             image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=400&h=300&fit=crop&crop=face',
             category: 'addons',
-            isAddon: true
+            isAddon: true,
+            benefits: ['Smooth skin', 'Better product absorption', 'Removes peach fuzz', 'Instant results'],
+            procedure: 'Cleanse → Dermaplaning → Soothing serum → Moisturize',
+            idealFor: 'All skin types, pre-event treatment'
         }
     ],
     

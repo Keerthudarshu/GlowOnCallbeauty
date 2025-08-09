@@ -1,6 +1,8 @@
 // Global state
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 let currentSection = 'home';
+let bookedSlots = JSON.parse(localStorage.getItem('bookedSlots')) || {};
+let previousSection = 'home';
 
 // Initialize app
 document.addEventListener('DOMContentLoaded', function() {
@@ -20,9 +22,14 @@ function setupEventListeners() {
 
     // Copy coupon codes
     document.addEventListener('click', function(e) {
-        if (e.target.classList.contains('copy-btn') || e.target.parentElement.classList.contains('copy-btn')) {
-            const couponCode = e.target.closest('.coupon-code').querySelector('strong').textContent;
-            copyToClipboard(couponCode);
+        if (e.target.classList && (e.target.classList.contains('copy-btn') || (e.target.parentElement && e.target.parentElement.classList.contains('copy-btn')))) {
+            const couponElement = e.target.closest('.coupon-code');
+            if (couponElement) {
+                const strongElement = couponElement.querySelector('strong');
+                if (strongElement) {
+                    copyToClipboard(strongElement.textContent);
+                }
+            }
         }
     });
 
@@ -36,6 +43,11 @@ function setupEventListeners() {
 
 // Navigation functions
 function showSection(sectionId) {
+    // Store previous section for back navigation
+    if (currentSection !== sectionId) {
+        previousSection = currentSection;
+    }
+    
     // Hide all sections
     document.querySelectorAll('section').forEach(section => {
         section.classList.remove('active');
@@ -50,6 +62,10 @@ function showSection(sectionId) {
     
     // Update bottom navigation
     updateBottomNav(sectionId);
+}
+
+function goBack() {
+    showSection(previousSection);
 }
 
 function showCategory(categoryId) {
@@ -85,7 +101,7 @@ function populateHomepageServices() {
 
 function createFeaturedServiceCard(service) {
     return `
-        <div class="service-detail-card" onclick="addToCart('${service.id}')">
+        <div class="service-detail-card" onclick="showServiceDetail('${service.id}')">
             <div class="service-image">
                 <img src="${service.image}" alt="${service.name}" />
                 <div class="service-label">${service.category.charAt(0).toUpperCase() + service.category.slice(1)}</div>
@@ -132,7 +148,7 @@ function createServiceCard(service) {
     const discountPercent = Math.round((discount / service.originalPrice) * 100);
     
     return `
-        <div class="service-item" data-service-id="${service.id}">
+        <div class="service-item" data-service-id="${service.id}" onclick="showServiceDetail('${service.id}')">
             <div class="service-header">
                 <div class="service-details">
                     <h3>${service.name}${service.isAddon ? '<span class="addon-tag">ADD ON</span>' : ''}</h3>
@@ -149,7 +165,7 @@ function createServiceCard(service) {
                     <i class="fas fa-clock"></i>
                     <span>${service.duration} mins</span>
                 </div>
-                <button class="add-btn" onclick="addToCart('${service.id}')">ADD+</button>
+                <button class="add-btn" onclick="event.stopPropagation(); addToCart('${service.id}')">ADD+</button>
             </div>
         </div>
     `;
@@ -517,6 +533,278 @@ function submitBooking() {
     
     closeCustomerModal();
     showNotification('Booking request sent! We will contact you soon.');
+}
+
+// Service Detail Functions
+function showServiceDetail(serviceId) {
+    const service = findServiceById(serviceId);
+    if (!service) return;
+    
+    document.getElementById('service-detail-title').textContent = service.name;
+    const content = document.getElementById('service-detail-content');
+    
+    content.innerHTML = `
+        <div class="service-detail-main">
+            <div class="service-detail-image">
+                <img src="${service.image}" alt="${service.name}" />
+            </div>
+            
+            <div class="service-detail-info">
+                <h2>${service.name}</h2>
+                <p class="service-description">${service.description}</p>
+                
+                <div class="service-pricing">
+                    <div class="price-info">
+                        <span class="current-price">₹${service.discountedPrice}</span>
+                        ${service.originalPrice !== service.discountedPrice ? 
+                            `<span class="original-price">₹${service.originalPrice}</span>
+                             <span class="discount-percent">${Math.round((1 - service.discountedPrice/service.originalPrice) * 100)}% OFF</span>` 
+                            : ''}
+                    </div>
+                    <div class="duration-info">
+                        <i class="fas fa-clock"></i>
+                        <span>${service.duration} minutes</span>
+                    </div>
+                </div>
+
+                ${service.benefits ? `
+                    <div class="service-benefits">
+                        <h3>Benefits</h3>
+                        <ul>
+                            ${service.benefits.map(benefit => `<li>${benefit}</li>`).join('')}
+                        </ul>
+                    </div>
+                ` : ''}
+
+                ${service.procedure ? `
+                    <div class="service-procedure">
+                        <h3>Procedure</h3>
+                        <p>${service.procedure}</p>
+                    </div>
+                ` : ''}
+
+                ${service.idealFor ? `
+                    <div class="service-ideal">
+                        <h3>Ideal For</h3>
+                        <p>${service.idealFor}</p>
+                    </div>
+                ` : ''}
+
+                <div class="service-actions">
+                    <button class="add-to-cart-btn" onclick="addToCart('${service.id}')">
+                        <i class="fas fa-shopping-cart"></i>
+                        Add to Cart
+                    </button>
+                    <button class="book-now-btn" onclick="showAppointmentBooking('${service.id}')">
+                        <i class="fas fa-calendar-plus"></i>
+                        Book Appointment
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    showSection('service-detail');
+}
+
+function findServiceById(serviceId) {
+    const allServices = [
+        ...servicesData.facials,
+        ...servicesData['lash-extensions'],
+        ...servicesData.eyebrows,
+        ...servicesData.addons,
+        ...servicesData.combos
+    ];
+    return allServices.find(service => service.id === serviceId);
+}
+
+function showAppointmentBooking(serviceId) {
+    const service = findServiceById(serviceId);
+    if (!service) return;
+    
+    const modal = document.createElement('div');
+    modal.className = 'appointment-modal';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Book Appointment</h2>
+                <button class="close-btn" onclick="closeAppointmentModal()">&times;</button>
+            </div>
+            <div class="appointment-form">
+                <div class="service-summary">
+                    <img src="${service.image}" alt="${service.name}" />
+                    <div class="service-info">
+                        <h3>${service.name}</h3>
+                        <p>Duration: ${service.duration} minutes</p>
+                        <p class="price">₹${service.discountedPrice}</p>
+                    </div>
+                </div>
+                
+                <form id="appointment-form">
+                    <div class="form-group">
+                        <label for="appointment-date">Select Date</label>
+                        <input type="date" id="appointment-date" required min="${new Date().toISOString().split('T')[0]}">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="appointment-time">Select Time</label>
+                        <div class="time-slots" id="time-slots">
+                            <!-- Time slots will be populated here -->
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="customer-name">Full Name</label>
+                        <input type="text" id="customer-name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="customer-phone">Phone Number</label>
+                        <input type="tel" id="customer-phone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="customer-address">Address</label>
+                        <textarea id="customer-address" rows="3" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="button" class="location-btn" onclick="shareLocation()">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Share Current Location
+                        </button>
+                        <span id="location-status" class="location-status"></span>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button type="button" class="cancel-btn" onclick="closeAppointmentModal()">Cancel</button>
+                        <button type="submit" class="book-btn">Book Appointment</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    // Generate time slots
+    generateTimeSlots();
+    
+    // Handle date change to update available slots
+    document.getElementById('appointment-date').addEventListener('change', generateTimeSlots);
+    
+    // Handle form submission
+    document.getElementById('appointment-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        submitAppointment(serviceId);
+    });
+}
+
+function generateTimeSlots() {
+    const dateInput = document.getElementById('appointment-date');
+    const timeSlotsContainer = document.getElementById('time-slots');
+    const selectedDate = dateInput.value;
+    
+    if (!selectedDate) {
+        timeSlotsContainer.innerHTML = '<p>Please select a date first</p>';
+        return;
+    }
+    
+    const timeSlots = [
+        '09:00', '10:00', '11:00', '12:00', 
+        '13:00', '14:00', '15:00', '16:00', 
+        '17:00', '18:00'
+    ];
+    
+    const bookedSlotsForDate = bookedSlots[selectedDate] || [];
+    
+    timeSlotsContainer.innerHTML = timeSlots.map(time => {
+        const isBooked = bookedSlotsForDate.includes(time);
+        return `
+            <div class="time-slot ${isBooked ? 'booked' : ''}" 
+                 data-time="${time}"
+                 onclick="${isBooked ? '' : 'selectTimeSlot(this)'}">
+                ${formatTime(time)}
+                ${isBooked ? '<span class="booked-label">Booked</span>' : ''}
+            </div>
+        `;
+    }).join('');
+}
+
+function selectTimeSlot(element) {
+    // Remove previous selection
+    document.querySelectorAll('.time-slot').forEach(slot => {
+        slot.classList.remove('selected');
+    });
+    
+    // Add selection to clicked element
+    element.classList.add('selected');
+}
+
+function formatTime(time) {
+    const [hours, minutes] = time.split(':');
+    const hour24 = parseInt(hours);
+    const hour12 = hour24 > 12 ? hour24 - 12 : hour24;
+    const ampm = hour24 >= 12 ? 'PM' : 'AM';
+    return `${hour12}:${minutes} ${ampm}`;
+}
+
+function submitAppointment(serviceId) {
+    const service = findServiceById(serviceId);
+    const selectedDate = document.getElementById('appointment-date').value;
+    const selectedTimeSlot = document.querySelector('.time-slot.selected');
+    const name = document.getElementById('customer-name').value;
+    const phone = document.getElementById('customer-phone').value;
+    const address = document.getElementById('customer-address').value;
+    
+    if (!selectedDate || !selectedTimeSlot || !name || !phone || !address) {
+        showNotification('Please fill in all required fields and select a time slot');
+        return;
+    }
+    
+    const selectedTime = selectedTimeSlot.dataset.time;
+    
+    // Book the slot
+    if (!bookedSlots[selectedDate]) {
+        bookedSlots[selectedDate] = [];
+    }
+    bookedSlots[selectedDate].push(selectedTime);
+    localStorage.setItem('bookedSlots', JSON.stringify(bookedSlots));
+    
+    // Prepare WhatsApp message
+    const locationStatus = document.getElementById('location-status');
+    const location = locationStatus.dataset.location || '';
+    
+    let whatsappMessage = `🌟 *GlowOnCall Appointment Booking* 🌟\n\n`;
+    whatsappMessage += `💄 *Service:* ${service.name}\n`;
+    whatsappMessage += `💰 *Price:* ₹${service.discountedPrice}\n`;
+    whatsappMessage += `⏱️ *Duration:* ${service.duration} minutes\n\n`;
+    whatsappMessage += `📅 *Appointment Details:*\n`;
+    whatsappMessage += `Date: ${selectedDate}\n`;
+    whatsappMessage += `Time: ${formatTime(selectedTime)}\n\n`;
+    whatsappMessage += `👤 *Customer Details:*\n`;
+    whatsappMessage += `Name: ${name}\n`;
+    whatsappMessage += `Phone: ${phone}\n`;
+    whatsappMessage += `Address: ${address}\n`;
+    
+    if (location) {
+        whatsappMessage += `📍 Location: https://maps.google.com/?q=${location}\n`;
+    }
+    
+    whatsappMessage += `\nPlease confirm my appointment. Thank you! 💕`;
+    
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+    window.open(`https://wa.me/917892783668?text=${encodedMessage}`, '_blank');
+    
+    closeAppointmentModal();
+    showNotification('Appointment booked! We will contact you for confirmation.');
+}
+
+function closeAppointmentModal() {
+    const modal = document.querySelector('.appointment-modal');
+    if (modal) {
+        modal.remove();
+    }
 }
 
 // Override cart navigation to render cart
