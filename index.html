@@ -12,6 +12,9 @@
     <!-- Header -->
     <header class="header">
         <div class="header-top">
+            <div class="logo-section">
+                <img src="logo.png" alt="GlowOnCall" class="header-logo" />
+            </div>
             <div class="location-selector">
                 <i class="fas fa-map-marker-alt"></i>
                 <span>Bangalore</span>
@@ -39,20 +42,22 @@
         <section id="home" class="hero-section active">
             <div class="hero-banner">
                 <div class="hero-content">
-                    <h1>GlowOnCall<br>Beauty</h1>
-                    <p>at Your Doorstep</p>
+                    <div class="hero-logo">
+                        
+                    </div>
+                    <h1>Beauty at Your Doorstep</h1>
+                    <p>Professional beauty services delivered to your home</p>
                 </div>
                 <div class="hero-image">
-                    <img src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=600&h=400&fit=crop&crop=face" alt="Beauty Treatment at Home" />
-                </div>
+<img src="logo.png" alt="GlowOnCall" class="hero-logo-image" />                </div>
             </div>
             
             <div class="promo-section">
                 <div class="promo-card buy-one">
-                    <span class="promo-badge">BUY 1 GET 1</span>
+                    <span class="promo-badge" onclick="showCategory('combos')">BUY 1 GET 1</span>
                 </div>
                 <div class="promo-card free-service">
-                    <span class="promo-badge">FREE</span>
+                    <span class="promo-badge" onclick="showCategory('free-services')">FREE</span>
                 </div>
             </div>
 
@@ -60,32 +65,40 @@
             <div class="section-header">
                 <h2>Complete Beauty Care</h2>
             </div>
-            <div class="service-grid">
-                <div class="service-card" onclick="showCategory('offers')">
+            <div class="service-grid enhanced">
+                <div class="service-card animated" onclick="showCategory('offers')">
                     <div class="service-icon weekday-offer">
+                        <div class="icon-overlay"></div>
                         <span class="offer-text">BUY 1<br>GET 1</span>
                     </div>
                     <p>Weekday Offer</p>
+                    <div class="card-shine"></div>
                 </div>
-                <div class="service-card" onclick="showCategory('facials')">
+                <div class="service-card animated" onclick="showCategory('facials')">
                     <div class="service-icon">
+                        <div class="icon-overlay"></div>
                         <img src="https://pixabay.com/get/gb116eaf2ba075ffa3c0d6f2318dbef8951825e46ef5417fe672e1524a3c38a7a490e22c9cab25fd56b525e0ea153b927b29913b96eaab805492ea968b051009f_1280.jpg" alt="Facial" />
                     </div>
                     <p>Salon At Home</p>
+                    <div class="card-shine"></div>
                 </div>
-                <div class="service-card" onclick="showCategory('combos')">
+                <div class="service-card animated" onclick="showCategory('combos')">
                     <div class="service-icon">
+                        <div class="icon-overlay"></div>
                         <div class="combo-badge">
                             <span>CHOOSE<br>ANY 4<br>@999</span>
                         </div>
                     </div>
                     <p>Choose Any 4 @999</p>
+                    <div class="card-shine"></div>
                 </div>
-                <div class="service-card" onclick="showCategory('facials')">
+                <div class="service-card animated" onclick="showCategory('facials')">
                     <div class="service-icon">
+                        <div class="icon-overlay"></div>
                         <img src="https://pixabay.com/get/g8ae74fe373c7e924a2109f712a31022bad48f423e505be8df3c84b10afec7172a35d53715feb832e38e6d0ab8ab8695a89f6ef4931e6dd5d51ada974d552da7e_1280.jpg" alt="HydraFacial" />
                     </div>
                     <p>Hydra Facial</p>
+                    <div class="card-shine"></div>
                 </div>
             </div>
 
@@ -96,14 +109,22 @@
             </div>
             
             <div class="service-filters">
-                <button class="filter-btn active">Waxing</button>
-                <button class="filter-btn">Facial</button>
-                <button class="filter-btn">Hydra Facial</button>
-                <button class="filter-btn">Pedicure & Manicure</button>
+                <button class="filter-btn active" data-category="waxing">Waxing</button>
+                <button class="filter-btn" data-category="facials">Facial</button>
+                <button class="filter-btn" data-category="facials">Hydra Facial</button>
+                <button class="filter-btn" data-category="pedicure-manicure">Pedicure & Manicure</button>
             </div>
 
-            <div class="featured-services" id="featured-services-container">
-                <!-- Services will be populated dynamically -->
+            <div class="scrollable-container">
+                <button class="scroll-btn scroll-left" id="scroll-left" onclick="scrollServices('left')">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="featured-services" id="featured-services-container">
+                    <!-- Services will be populated dynamically -->
+                </div>
+                <button class="scroll-btn scroll-right" id="scroll-right" onclick="scrollServices('right')">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
 
             <!-- Shop by Products -->
@@ -111,19 +132,19 @@
                 <h2>Shop by Products</h2>
             </div>
             <div class="product-categories">
-                <div class="product-category">
+                <div class="product-category" onclick="showProductCategory('hair-products')">
                     <div class="product-icon">
                         <img src="https://pixabay.com/get/g2aa6bf3271666c0b57e4b14cb627351d0ec70eb081ea493ca39729125507b653f8c741b68bd01852ed2026bb27a463e10eb0d07d0616ad58eb5e17d0650ba06e_1280.jpg" alt="Hair Products" />
                     </div>
                     <p>Hair Products</p>
                 </div>
-                <div class="product-category">
+                <div class="product-category" onclick="showProductCategory('body-products')">
                     <div class="product-icon">
-                        <img src="https://pixabay.com/get/gb760880e55415b3e3ffab7c942a974bf9cd09fd50d13d48b5b720b085ae397180a0dc0763ccdae88e899c9566d183c0ea4eb417c69bc839c8e17ef30051f5dcf_1280.jpg" alt="Body Products" />
+                        <img src="https://pixabay.com/get/gb760880e55415b3e3ffab7c942a974bf9cd09fd50d13d48b5b720b085ae397180a0dc0763ccdae88e899c9566d183c0ea4eb4417c69bc839c8e17ef30051f5dcf_1280.jpg" alt="Body Products" />
                     </div>
                     <p>Body Products</p>
                 </div>
-                <div class="product-category">
+                <div class="product-category" onclick="showProductCategory('face-products')">
                     <div class="product-icon">
                         <img src="https://pixabay.com/get/gbc48cdb9d9eae0a0f0b3986258219b13bc9d0563d5089c4ff5abb4fee7f2ace6de8de46c8a66b95b06a380b7a0083921891d24f36d2d4a1108375ce2f1637728_1280.jpg" alt="Face Products" />
                     </div>
@@ -324,6 +345,71 @@
                 <h1>Combo Packages</h1>
             </div>
             <div id="combos-content" class="services-list"></div>
+        </section>
+
+        <section id="waxing" class="service-category-section">
+            <div class="page-header">
+                <button class="back-btn" onclick="showSection('categories')">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h1>Waxing Services</h1>
+            </div>
+            <div id="waxing-content" class="services-list"></div>
+        </section>
+
+        <section id="threading" class="service-category-section">
+            <div class="page-header">
+                <button class="back-btn" onclick="showSection('categories')">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h1>Threading Services</h1>
+            </div>
+            <div id="threading-content" class="services-list"></div>
+        </section>
+
+        <section id="hair-treatment" class="service-category-section">
+            <div class="page-header">
+                <button class="back-btn" onclick="showSection('categories')">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h1>Hair Treatments</h1>
+            </div>
+            <div id="hair-treatment-content" class="services-list"></div>
+        </section>
+
+        <section id="spa-at-home" class="service-category-section">
+            <div class="page-header">
+                <button class="back-btn" onclick="showSection('categories')">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h1>Spa At Home</h1>
+            </div>
+            <div id="spa-at-home-content" class="services-list"></div>
+        </section>
+
+        <section id="pedicure-manicure" class="service-category-section">
+            <div class="page-header">
+                <button class="back-btn" onclick="showSection('categories')">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h1>Pedicure & Manicure</h1>
+            </div>
+            <div id="pedicure-manicure-content" class="services-list"></div>
+        </section>
+
+        <section id="products" class="service-category-section">
+            <div class="page-header">
+                <button class="back-btn" onclick="showSection('home')">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h1>Beauty Products</h1>
+            </div>
+            <div class="product-filters">
+                <button class="filter-btn active" data-category="hair-products">Hair Products</button>
+                <button class="filter-btn" data-category="body-products">Body Products</button>
+                <button class="filter-btn" data-category="face-products">Face Products</button>
+            </div>
+            <div id="products-content" class="services-list"></div>
         </section>
 
         <!-- Offers Section -->
