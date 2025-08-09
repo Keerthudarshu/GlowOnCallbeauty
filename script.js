@@ -100,21 +100,37 @@ function populateHomepageServices() {
 }
 
 function createFeaturedServiceCard(service) {
+    const discountPercent = Math.round((1 - service.discountedPrice/service.originalPrice) * 100);
+    
     return `
-        <div class="service-detail-card" onclick="showServiceDetail('${service.id}')">
-            <div class="service-image">
-                <img src="${service.image}" alt="${service.name}" />
-                <div class="service-label">${service.category.charAt(0).toUpperCase() + service.category.slice(1)}</div>
+        <div class="featured-service-card">
+            <div class="featured-card-image">
+                <img src="${service.image}" alt="${service.name}" loading="lazy" />
+                <div class="featured-service-label">${service.category.charAt(0).toUpperCase() + service.category.slice(1)}</div>
+                ${discountPercent > 0 ? `<div class="featured-discount-badge">${discountPercent}% OFF</div>` : ''}
             </div>
-            <div class="service-info">
-                <h3>${service.name}</h3>
-                <div class="service-duration">
-                    <i class="fas fa-clock"></i>
-                    <span>${service.duration} mins</span>
+            <div class="featured-card-content">
+                <h3 class="featured-card-title">${service.name}</h3>
+                <div class="featured-card-details">
+                    <div class="featured-duration">
+                        <i class="fas fa-clock"></i>
+                        <span>${service.duration} mins</span>
+                    </div>
+                    <div class="featured-pricing">
+                        <span class="featured-current-price">₹${service.discountedPrice}</span>
+                        ${service.originalPrice !== service.discountedPrice ? 
+                            `<span class="featured-original-price">₹${service.originalPrice}</span>` : ''}
+                    </div>
                 </div>
-                <div class="service-price">
-                    <span class="current-price">₹${service.discountedPrice}</span>
-                    ${service.originalPrice !== service.discountedPrice ? `<span class="original-price">₹${service.originalPrice}</span>` : ''}
+                <div class="featured-card-actions">
+                    <button class="featured-view-btn" onclick="showServiceDetail('${service.id}')">
+                        <i class="fas fa-eye"></i>
+                        View Details
+                    </button>
+                    <button class="featured-add-btn" onclick="addToCart('${service.id}')">
+                        <i class="fas fa-plus"></i>
+                        Add
+                    </button>
                 </div>
             </div>
         </div>
@@ -148,24 +164,43 @@ function createServiceCard(service) {
     const discountPercent = Math.round((discount / service.originalPrice) * 100);
     
     return `
-        <div class="service-item" data-service-id="${service.id}" onclick="showServiceDetail('${service.id}')">
-            <div class="service-header">
-                <div class="service-details">
-                    <h3>${service.name}${service.isAddon ? '<span class="addon-tag">ADD ON</span>' : ''}</h3>
-                    <p>${service.description}</p>
-                    ${service.services ? `<div class="combo-description">Includes: ${service.services.join(' + ')}</div>` : ''}
-                </div>
-                <div class="service-pricing">
-                    <span class="current-price">₹${service.discountedPrice}</span>
-                    ${service.originalPrice !== service.discountedPrice ? `<span class="original-price">₹${service.originalPrice}</span>` : ''}
-                </div>
+        <div class="service-card-wrapper">
+            <div class="service-card-image">
+                <img src="${service.image}" alt="${service.name}" loading="lazy" />
+                ${service.isAddon ? '<div class="service-badge addon">ADD ON</div>' : ''}
+                ${service.services ? '<div class="service-badge combo">COMBO</div>' : ''}
+                ${discountPercent > 0 ? `<div class="discount-badge">${discountPercent}% OFF</div>` : ''}
             </div>
-            <div class="service-actions">
-                <div class="service-duration">
-                    <i class="fas fa-clock"></i>
-                    <span>${service.duration} mins</span>
+            
+            <div class="service-card-content">
+                <div class="service-card-header">
+                    <h3 class="service-card-title">${service.name}</h3>
+                    <p class="service-card-description">${service.description}</p>
+                    ${service.services ? `<div class="combo-services">Includes: ${service.services.join(' + ')}</div>` : ''}
                 </div>
-                <button class="add-btn" onclick="event.stopPropagation(); addToCart('${service.id}')">ADD+</button>
+                
+                <div class="service-card-details">
+                    <div class="service-duration-card">
+                        <i class="fas fa-clock"></i>
+                        <span>${service.duration} mins</span>
+                    </div>
+                    <div class="service-card-pricing">
+                        <span class="service-current-price">₹${service.discountedPrice}</span>
+                        ${service.originalPrice !== service.discountedPrice ? 
+                            `<span class="service-original-price">₹${service.originalPrice}</span>` : ''}
+                    </div>
+                </div>
+                
+                <div class="service-card-actions">
+                    <button class="service-view-btn" onclick="showServiceDetail('${service.id}')">
+                        <i class="fas fa-eye"></i>
+                        View Details
+                    </button>
+                    <button class="service-add-btn" onclick="addToCart('${service.id}')">
+                        <i class="fas fa-shopping-cart"></i>
+                        Add to Cart
+                    </button>
+                </div>
             </div>
         </div>
     `;
