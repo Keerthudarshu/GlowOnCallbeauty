@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlowOnCall - Beauty Services at Home</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-top">
+            <div class="location-selector">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Bangalore</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="header-actions">
+                <a href="https://wa.me/919876543210" class="whatsapp-btn">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <div class="profile-btn">K</div>
+            </div>
+        </div>
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search for services..." />
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            <button class="get-look-btn">GetLook NOW</button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section id="home" class="hero-section active">
+            <div class="hero-banner">
+                <div class="hero-content">
+                    <h1>Korean<br>Glow</h1>
+                    <p>at Home</p>
+                </div>
+                <div class="hero-image">
+                    <img src="https://pixabay.com/get/g371ff8a7b4a635d2d512ac95ea2127d8ee583b85f44f266279c9beb0ac9ae22979ad0fdae5aab9debe18aad06af39e00b27858ba12df37fc8c04741db11cdc5e_1280.jpg" alt="Korean Glow Treatment" />
+                </div>
+            </div>
+            
+            <div class="promo-section">
+                <div class="promo-card buy-one">
+                    <span class="promo-badge">BUY 1 GET 1</span>
+                </div>
+                <div class="promo-card free-service">
+                    <span class="promo-badge">FREE</span>
+                </div>
+            </div>
+
+            <!-- Complete Beauty Care -->
+            <div class="section-header">
+                <h2>Complete Beauty Care</h2>
+            </div>
+            <div class="service-grid">
+                <div class="service-card" onclick="showCategory('offers')">
+                    <div class="service-icon weekday-offer">
+                        <span class="offer-text">BUY 1<br>GET 1</span>
+                    </div>
+                    <p>Weekday Offer</p>
+                </div>
+                <div class="service-card" onclick="showCategory('facials')">
+                    <div class="service-icon">
+                        <img src="https://pixabay.com/get/gb116eaf2ba075ffa3c0d6f2318dbef8951825e46ef5417fe672e1524a3c38a7a490e22c9cab25fd56b525e0ea153b927b29913b96eaab805492ea968b051009f_1280.jpg" alt="Facial" />
+                    </div>
+                    <p>Salon At Home</p>
+                </div>
+                <div class="service-card" onclick="showCategory('combos')">
+                    <div class="service-icon">
+                        <div class="combo-badge">
+                            <span>CHOOSE<br>ANY 4<br>@999</span>
+                        </div>
+                    </div>
+                    <p>Choose Any 4 @999</p>
+                </div>
+                <div class="service-card" onclick="showCategory('facials')">
+                    <div class="service-icon">
+                        <img src="https://pixabay.com/get/g8ae74fe373c7e924a2109f712a31022bad48f423e505be8df3c84b10afec7172a35d53715feb832e38e6d0ab8ab8695a89f6ef4931e6dd5d51ada974d552da7e_1280.jpg" alt="HydraFacial" />
+                    </div>
+                    <p>Hydra Facial</p>
+                </div>
+            </div>
+
+            <!-- Most Booked Services -->
+            <div class="section-header">
+                <h2>Most Booked Services</h2>
+                <p class="location-tag"><i class="fas fa-map-marker-alt"></i> In Bangalore</p>
+            </div>
+            
+            <div class="service-filters">
+                <button class="filter-btn active">Waxing</button>
+                <button class="filter-btn">Facial</button>
+                <button class="filter-btn">Hydra Facial</button>
+                <button class="filter-btn">Pedicure & Manicure</button>
+            </div>
+
+            <div class="featured-services">
+                <div class="service-detail-card">
+                    <div class="service-image">
+                        <img src="https://pixabay.com/get/g96aed99773d5a20acf3d1301b3a3f9ecc8506a4b3bdb4e4d8f0fa595f6a627928916fa96a25fba54f9195aa9ae9f041e818f467d566bd1d432781b72bf4e400c_1280.jpg" alt="Korean Glow Wax" />
+                        <div class="service-label">Korean Wax & Brazilian</div>
+                    </div>
+                    <div class="service-info">
+                        <h3>Korean Glow Wax</h3>
+                        <div class="service-duration">
+                            <i class="fas fa-clock"></i>
+                            <span>45 mins</span>
+                        </div>
+                        <div class="service-price">
+                            <span class="current-price">₹899</span>
+                            <span class="original-price">₹1599</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-detail-card">
+                    <div class="service-image">
+                        <img src="https://pixabay.com/get/ge0a8c406961f1a787b3f75f1ffab01d0061a722b2bc21afcb3a95241f14ebeb9516b95a15631ebef41238285ca605077cd15d8bc03382fda73a6058766a60775_1280.jpg" alt="Korean Cleanup" />
+                    </div>
+                    <div class="service-info">
+                        <h3>Korean Cleanup</h3>
+                        <div class="service-duration">
+                            <i class="fas fa-clock"></i>
+                            <span>35 mins</span>
+                        </div>
+                        <div class="service-price">
+                            <span class="current-price">₹599</span>
+                            <span class="original-price">₹899</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shop by Products -->
+            <div class="section-header">
+                <h2>Shop by Products</h2>
+            </div>
+            <div class="product-categories">
+                <div class="product-category">
+                    <div class="product-icon">
+                        <img src="https://pixabay.com/get/g2aa6bf3271666c0b57e4b14cb627351d0ec70eb081ea493ca39729125507b653f8c741b68bd01852ed2026bb27a463e10eb0d07d0616ad58eb5e17d0650ba06e_1280.jpg" alt="Hair Products" />
+                    </div>
+                    <p>Hair Products</p>
+                </div>
+                <div class="product-category">
+                    <div class="product-icon">
+                        <img src="https://pixabay.com/get/gb760880e55415b3e3ffab7c942a974bf9cd09fd50d13d48b5b720b085ae397180a0dc0763ccdae88e899c9566d183c0ea4eb417c69bc839c8e17ef30051f5dcf_1280.jpg" alt="Body Products" />
+                    </div>
+                    <p>Body Products</p>
+                </div>
+                <div class="product-category">
+                    <div class="product-icon">
+                        <img src="https://pixabay.com/get/gbc48cdb9d9eae0a0f0b3986258219b13bc9d0563d5089c4ff5abb4fee7f2ace6de8de46c8a66b95b06a380b7a0083921891d24f36d2d4a1108375ce2f1637728_1280.jpg" alt="Face Products" />
+                    </div>
+                    <p>Face Products</p>
+                </div>
+            </div>
+
+            <!-- Best Selling Packages -->
+            <div class="section-header">
+                <h2>Best Selling Packages</h2>
+            </div>
+            <div class="package-cards">
+                <div class="package-card bridal">
+                    <h3>BRIDAL GLOW<br>THE KOREAN WAY!</h3>
+                    <p>with FREE Korean Wax</p>
+                </div>
+                <div class="package-card beauty">
+                    <h3>10 BEAUTY SERVICES<br>1 PERFECT YOU!</h3>
+                </div>
+            </div>
+
+            <!-- Why GlowOnCall -->
+            <div class="section-header">
+                <h2>Why GlowOnCall?</h2>
+            </div>
+            <div class="features-section">
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Best Brands in 1-time use packs</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Trained, Verified beauticians</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Mess Free Service</span>
+                    </div>
+                </div>
+                <div class="feature-image">
+                    <img src="https://pixabay.com/get/g883d74d7c0f94303024b5dbc1218bb45071aa0b8d52ae5d30ff20136294b45bef8e803eddc7a49f540895abb4ad42b1a19a26f50e633ccc72e7ca1f966bef030_1280.jpg" alt="Beauty Service" />
+                </div>
+            </div>
+
+            <!-- Brand Partners -->
+            <div class="section-header">
+                <h2>We use best Brands in 1-Time use packs</h2>
+            </div>
+            <div class="brand-logos">
+                <div class="brand-logo">GETLOOK</div>
+                <div class="brand-logo">RICA</div>
+                <div class="brand-logo">ÉLAN</div>
+                <div class="brand-logo">L'ORÉAL</div>
+                <div class="brand-logo">O3+</div>
+                <div class="brand-logo">Streax</div>
+            </div>
+
+            <!-- Trust Section -->
+            <div class="trust-section">
+                <h2>Trusted by<br>over 10 Lakh Women</h2>
+                <p>Build with ❤️ by team GETLOOK</p>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section id="categories" class="categories-section">
+            <div class="page-header">
+                <button class="back-btn" onclick="showSection('home')">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h1>Categories</h1>
+            </div>
+            
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" placeholder="Search for salon services etc" />
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+            </div>
+
+            <div class="section-header">
+                <h2>Shop by Category</h2>
+            </div>
+
+            <div class="category-grid">
+                <div class="category-card" onclick="showCategory('offers')">
+                    <div class="category-icon weekday-offer">
+                        <span class="offer-text">BUY 1<br>GET 1</span>
+                    </div>
+                    <p>Weekday Offer</p>
+                </div>
+                <div class="category-card" onclick="showCategory('facials')">
+                    <div class="category-icon">
+                        <img src="https://pixabay.com/get/gb116eaf2ba075ffa3c0d6f2318dbef8951825e46ef5417fe672e1524a3c38a7a490e22c9cab25fd56b525e0ea153b927b29913b96eaab805492ea968b051009f_1280.jpg" alt="Salon At Home" />
+                    </div>
+                    <p>Salon At Home</p>
+                </div>
+                <div class="category-card" onclick="showCategory('combos')">
+                    <div class="category-icon combo-package">
+                        <span>Best Selling Packages</span>
+                    </div>
+                    <p>Best Selling Packages</p>
+                </div>
+                <div class="category-card" onclick="showCategory('combos')">
+                    <div class="category-icon combo-badge">
+                        <span>Choose Any 4 @999</span>
+                    </div>
+                    <p>Choose Any 4 @999</p>
+                </div>
+                <div class="category-card" onclick="showCategory('waxing')">
+                    <div class="category-icon">
+                        <img src="https://pixabay.com/get/g96aed99773d5a20acf3d1301b3a3f9ecc8506a4b3bdb4e4d8f0fa595f6a627928916fa96a25fba54f9195aa9ae9f041e818f467d566bd1d432781b72bf4e400c_1280.jpg" alt="Waxing" />
+                    </div>
+                    <p>Waxing</p>
+                </div>
+                <div class="category-card" onclick="showCategory('facials')">
+                    <div class="category-icon">
+                        <img src="https://pixabay.com/get/ge0a8c406961f1a787b3f75f1ffab01d0061a722b2bc21afcb3a95241f14ebeb9516b95a15631ebef41238285ca605077cd15d8bc03382fda73a6058766a60775_1280.jpg" alt="Facial" />
+                    </div>
+                    <p>Facial</p>
+                </div>
+                <div class="category-card" onclick="showCategory('facials')">
+                    <div class="category-icon">
+                        <img src="https://pixabay.com/get/g8ae74fe373c7e924a2109f712a31022bad48f423e505be8df3c84b10afec7172a35d53715feb832e38e6d0ab8ab8695a89f6ef4931e6dd5d51ada974d552da7e_1280.jpg" alt="Hydra Facial" />
+                    </div>
+                    <p>Hydra Facial</p>
+                </div>
+                <div class="category-card" onclick="showCategory('lash-extensions')">
+                    <div class="category-icon">
+                        <img src="https://pixabay.com/get/gac2bfd673f199449ff742e7cd905a28200e39661bc093794defb1dd4b43f6dc4b28a702652e79926f534c514ad7c72ed5bb535f2cfe669e534fd17ac79fe90b4_1280.jpg" alt="Pedicure & Manicure" />
+                    </div>
+                    <p>Pedicure & Manicure</p>
+                </div>
+                <div class="category-card" onclick="showCategory('eyebrows')">
+                    <div class="category-icon">
+                        <img src="https://pixabay.com/get/g77167ea985a0ec296cdf0b62402ec68128cbf2bfaf63cb692edf5d06a1aff318f5f25cab424162d376b14b2f242b9da9f105865eb74f00dd0e3db8d662fd7796_1280.jpg" alt="DeTan/Bleach" />
+                    </div>
+                    <p>DeTan/Bleach</p>
+                </div>
+                <div class="category-card" onclick="showCategory('threading')">
+                    <div class="category-icon">
+                        <img src="https://pixabay.com/get/g24a6e6b080f74cae9c751977f09dad1f84acafb620737ee45e674449345d90f04a7c810731f95bda977918f7b408d6b637ee485effdd3dd8cab6b4d38c64d22a_1280.jpg" alt="Threading" />
+                    </div>
+                    <p>Threading</p>
+                </div>
+                <div class="category-card" onclick="showCategory('hair-treatment')">
+                    <div class="category-icon">
+                        <img src="https://pixabay.com/get/g2aa6bf3271666c0b57e4b14cb627351d0ec70eb081ea493ca39729125507b653f8c741b68bd01852ed2026bb27a463e10eb0d07d0616ad58eb5e17d0650ba06e_1280.jpg" alt="Hair Treatment" />
+                    </div>
+                    <p>Hair Treatment</p>
+                </div>
+                <div class="category-card" onclick="showCategory('spa-at-home')">
+                    <div class="category-icon">
+                        <img src="https://pixabay.com/get/g883d74d7c0f94303024b5dbc1218bb45071aa0b8d52ae5d30ff20136294b45bef8e803eddc7a49f540895abb4ad42b1a19a26f50e633ccc72e7ca1f966bef030_1280.jpg" alt="Spa At Home" />
+                    </div>
+                    <p>Spa At Home</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service Category Sections -->
+        <section id="facials" class="service-category-section">
+            <div class="page-header">
+                <button class="back-btn" onclick="showSection('categories')">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h1>Facial Treatments</h1>
+            </div>
+            <div id="facials-content" class="services-list"></div>
+        </section>
+
+        <section id="lash-extensions" class="service-category-section">
+            <div class="page-header">
+                <button class="back-btn" onclick="showSection('categories')">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h1>Lash Extensions</h1>
+            </div>
+            <div id="lash-extensions-content" class="services-list"></div>
+        </section>
+
+        <section id="eyebrows" class="service-category-section">
+            <div class="page-header">
+                <button class="back-btn" onclick="showSection('categories')">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h1>Eyebrow Treatments</h1>
+            </div>
+            <div id="eyebrows-content" class="services-list"></div>
+        </section>
+
+        <section id="combos" class="service-category-section">
+            <div class="page-header">
+                <button class="back-btn" onclick="showSection('categories')">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h1>Combo Packages</h1>
+            </div>
+            <div id="combos-content" class="services-list"></div>
+        </section>
+
+        <!-- Offers Section -->
+        <section id="offers" class="offers-section">
+            <div class="page-header">
+                <button class="back-btn" onclick="showSection('home')">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h1>Offers & Deals</h1>
+            </div>
+
+            <div class="offer-types">
+                <div class="offer-type">
+                    <div class="offer-icon">
+                        <i class="fas fa-tags"></i>
+                    </div>
+                    <p>Coupon Discount</p>
+                </div>
+                <div class="offer-type">
+                    <div class="offer-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <p>New User</p>
+                </div>
+                <div class="offer-type">
+                    <div class="offer-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <p>Free Service</p>
+                </div>
+            </div>
+
+            <div class="offers-list">
+                <div class="offer-card">
+                    <div class="offer-content weekday-offer-bg">
+                        <h3>GET FLAT 25% OFF</h3>
+                        <p>WEEKDAYS</p>
+                        <div class="coupon-code">
+                            <span>Coupon Code: <strong>WEEKDAY25</strong></span>
+                            <button class="copy-btn"><i class="fas fa-copy"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="offer-card">
+                    <div class="offer-content new-user-offer">
+                        <h3>Get Flat Rs. 200 OFF</h3>
+                        <p>On Minimum Booking of Rs. 1499</p>
+                        <div class="coupon-code">
+                            <span>Use Code: <strong>FLAT200</strong></span>
+                            <button class="copy-btn"><i class="fas fa-copy"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="offer-card">
+                    <div class="offer-content app-download">
+                        <h3>DOWNLOAD OUR APP</h3>
+                        <p>SALON SERVICES DELIVERED TO YOUR DOOR STEP</p>
+                        <p><strong>FLAT 30% OFF</strong> On Your First App Order</p>
+                        <div class="coupon-code">
+                            <span>Use Code: <strong>APPONLY</strong></span>
+                            <button class="copy-btn"><i class="fas fa-copy"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cart Section -->
+        <section id="cart" class="cart-section">
+            <div class="page-header">
+                <button class="back-btn" onclick="showSection('home')">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h1>Cart</h1>
+            </div>
+
+            <div class="cart-actions">
+                <button class="cart-btn secondary">GetLook Now</button>
+                <button class="cart-btn primary">GetLook</button>
+            </div>
+
+            <div id="cart-content" class="cart-content">
+                <div class="empty-cart">
+                    <div class="empty-cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>Your cart is empty!</h3>
+                    <p>We recommend you to browse through our popular categories</p>
+                    <button class="browse-btn" onclick="showSection('categories')">Browse categories</button>
+                </div>
+            </div>
+
+            <div id="cart-items" class="cart-items" style="display: none;">
+                <!-- Cart items will be populated here -->
+            </div>
+
+            <div id="cart-total" class="cart-total" style="display: none;">
+                <div class="total-row">
+                    <span>Subtotal:</span>
+                    <span id="subtotal">₹0</span>
+                </div>
+                <div class="total-row">
+                    <span>Discount:</span>
+                    <span id="discount" class="discount">-₹0</span>
+                </div>
+                <div class="total-row final">
+                    <span>Total:</span>
+                    <span id="total">₹0</span>
+                </div>
+                <button class="checkout-btn">Proceed to Checkout</button>
+            </div>
+        </section>
+
+        <!-- Appointments Section -->
+        <section id="appointments" class="appointments-section">
+            <div class="page-header">
+                <button class="back-btn" onclick="showSection('home')">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h1>My Appointments</h1>
+            </div>
+
+            <div class="appointments-content">
+                <div class="empty-appointments">
+                    <div class="empty-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>No appointments yet</h3>
+                    <p>Book your first beauty service to see appointments here</p>
+                    <button class="browse-btn" onclick="showSection('categories')">Browse Services</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <div class="nav-item active" onclick="showSection('home')">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </div>
+        <div class="nav-item" onclick="showSection('categories')">
+            <i class="fas fa-th-large"></i>
+            <span>Categories</span>
+        </div>
+        <div class="nav-item" onclick="showSection('offers')">
+            <i class="fas fa-percent"></i>
+            <span>Offers</span>
+        </div>
+        <div class="nav-item" onclick="showSection('appointments')">
+            <i class="fas fa-calendar-alt"></i>
+            <span>Appointments</span>
+        </div>
+        <div class="nav-item" onclick="showSection('cart')">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Cart</span>
+            <div id="cart-badge" class="cart-badge" style="display: none;">0</div>
+        </div>
+    </nav>
+
+    <!-- Scripts -->
+    <script src="services-data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
