@@ -10,6 +10,13 @@ document.addEventListener('DOMContentLoaded', function() {
     populateServiceSections();
     populateHomepageServices();
     setupEventListeners();
+    setupFilterButtons();
+    
+    // Initialize with waxing services (default active filter)
+    populateFilteredServices('waxing');
+    
+    // Setup product filter buttons
+    setupProductFilterButtons();
 });
 
 // Event Listeners
@@ -58,6 +65,11 @@ function showSection(sectionId) {
     if (targetSection) {
         targetSection.classList.add('active');
         currentSection = sectionId;
+        
+        // If showing products section, load default category
+        if (sectionId === 'products') {
+            populateProductsSection('hair-products');
+        }
     }
     
     // Update bottom navigation
@@ -206,9 +218,199 @@ function createServiceCard(service) {
     `;
 }
 
+// Scrolling functionality for Most Booked Services
+function scrollServices(direction) {
+    const container = document.getElementById('featured-services-container');
+    const scrollAmount = 240; // Width of one service card + gap
+    
+    if (direction === 'left') {
+        container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    } else {
+        container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+}
+
+// Enhanced filter functionality
+function setupFilterButtons() {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            // Remove active class from all buttons in the same container
+            const container = this.closest('.section, .service-filters, .product-filters');
+            if (container) {
+                container.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            } else {
+                filterBtns.forEach(b => b.classList.remove('active'));
+            }
+            // Add active class to clicked button
+            this.classList.add('active');
+            
+            // Get category and populate services
+            const category = this.dataset.category;
+            populateFilteredServices(category);
+        });
+    });
+}
+
+// Product filter setup
+function setupProductFilterButtons() {
+    const productFilterBtns = document.querySelectorAll('#products .filter-btn');
+    productFilterBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            // Remove active class from product filter buttons
+            productFilterBtns.forEach(b => b.classList.remove('active'));
+            // Add active class to clicked button
+            this.classList.add('active');
+            
+            // Get category and populate products
+            const category = this.dataset.category;
+            populateProductsSection(category);
+        });
+    });
+}
+
+function populateFilteredServices(category) {
+    const container = document.getElementById('featured-services-container');
+    const services = getServicesByCategory(category);
+    
+    if (services.length === 0) {
+        container.innerHTML = '<p class="no-services">No services available in this category.</p>';
+        return;
+    }
+    
+    container.innerHTML = services.slice(0, 6).map(service => createFeaturedServiceCard(service)).join('');
+}
+
+// Product category functions
+function showProductCategory(category) {
+    showSection('products');
+    
+    // Update active filter button
+    const filterBtns = document.querySelectorAll('#products .filter-btn');
+    filterBtns.forEach(btn => btn.classList.remove('active'));
+    filterBtns.forEach(btn => {
+        if (btn.dataset.category === category) {
+            btn.classList.add('active');
+        }
+    });
+    
+    populateProductsSection(category);
+}
+
+function populateProductsSection(category) {
+    const container = document.getElementById('products-content');
+    const products = getServicesByCategory(category);
+    
+    if (products.length === 0) {
+        container.innerHTML = '<p class="no-services">No products available in this category.</p>';
+        return;
+    }
+    
+    container.innerHTML = products.map(product => createProductCard(product)).join('');
+}
+
+// Create product card for products section
+function createProductCard(product) {
+    const discount = product.originalPrice !== product.discountedPrice 
+        ? Math.round((1 - product.discountedPrice/product.originalPrice) * 100) 
+        : 0;
+    
+    return `
+        <div class="service-card">
+            <div class="service-card-image">
+                <img src="${product.image}" alt="${product.name}" />
+                <div class="service-label">${product.category.toUpperCase().replace('-', ' ')}</div>
+                ${discount > 0 ? `<div class="discount-badge">${discount}% OFF</div>` : ''}
+            </div>
+            <div class="service-card-content">
+                <div class="service-card-header">
+                    <h3 class="service-card-title">${product.name}</h3>
+                    <p class="service-card-description">${product.description}</p>
+                    ${product.ingredients ? `<div class="product-ingredients"><strong>Ingredients:</strong> ${product.ingredients}</div>` : ''}
+                    ${product.usage ? `<div class="product-usage"><strong>How to use:</strong> ${product.usage}</div>` : ''}
+                </div>
+                
+                <div class="service-card-details">
+                    <div class="service-card-pricing">
+                        <span class="service-current-price">₹${product.discountedPrice}</span>
+                        ${product.originalPrice !== product.discountedPrice ? 
+                            `<span class="service-original-price">₹${product.originalPrice}</span>` : ''}
+                    </div>
+                </div>
+                
+                <div class="service-card-actions">
+                    <button class="service-view-btn" onclick="showServiceDetail('${product.id}')">
+                        <i class="fas fa-eye"></i>
+                        View Details
+                    </button>
+                    <button class="service-add-btn" onclick="addToCart('${product.id}')">
+                        <i class="fas fa-shopping-cart"></i>
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+// Create featured service card for homepage display
+function createFeaturedServiceCard(service) {
+    const discount = service.originalPrice !== service.discountedPrice 
+        ? Math.round((1 - service.discountedPrice/service.originalPrice) * 100) 
+        : 0;
+    
+    return `
+        <div class="featured-service-card">
+            <div class="featured-card-image">
+                <img src="${service.image}" alt="${service.name}" />
+                <div class="featured-service-label">${service.category.toUpperCase()}</div>
+                ${discount > 0 ? `<div class="featured-discount-badge">${discount}% OFF</div>` : ''}
+            </div>
+            <div class="featured-card-content">
+                <h3 class="featured-card-title">${service.name}</h3>
+                <div class="featured-card-details">
+                    <div class="featured-duration">
+                        <i class="fas fa-clock"></i>
+                        <span>${service.duration} min</span>
+                    </div>
+                    <div class="featured-pricing">
+                        <span class="featured-current-price">₹${service.discountedPrice}</span>
+                        ${service.originalPrice !== service.discountedPrice ? 
+                            `<div class="featured-original-price">₹${service.originalPrice}</div>` : ''}
+                    </div>
+                </div>
+                <div class="featured-card-actions">
+                    <button class="featured-view-btn" onclick="showServiceDetail('${service.id}')">
+                        <i class="fas fa-eye"></i>
+                        View
+                    </button>
+                    <button class="featured-add-btn" onclick="addToCart('${service.id}')">
+                        <i class="fas fa-plus"></i>
+                        Add
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
 // Cart functionality
 function addToCart(serviceId) {
-    const allServices = [...servicesData.facials, ...servicesData['lash-extensions'], ...servicesData.eyebrows, ...servicesData.addons, ...servicesData.combos];
+    const allServices = [
+        ...servicesData.facials, 
+        ...servicesData['lash-extensions'], 
+        ...servicesData.eyebrows, 
+        ...servicesData.addons, 
+        ...servicesData.combos,
+        ...servicesData.waxing,
+        ...servicesData.threading,
+        ...servicesData['hair-treatment'],
+        ...servicesData['spa-at-home'],
+        ...servicesData['pedicure-manicure'],
+        ...servicesData['hair-products'],
+        ...servicesData['body-products'],
+        ...servicesData['face-products']
+    ];
     const service = allServices.find(s => s.id === serviceId);
     
     if (!service) return;
