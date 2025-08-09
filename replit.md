@@ -2,7 +2,7 @@
 
 ## Overview
 
-GlowOnCall is a web-based platform that connects users with professional beauty service providers who deliver treatments directly to customers' homes. The application focuses on Korean beauty treatments and various facial services, featuring a modern, mobile-first design with service browsing, cart functionality, and direct WhatsApp integration for booking.
+GlowOnCall is a complete beauty services booking website that connects users with professional beauty service providers who deliver treatments directly to customers' homes. The application features facials, lash extensions, eyebrow services, and combo packages with a premium mobile-first design, sophisticated cart functionality, customer details collection with location sharing, and WhatsApp integration for seamless booking.
 
 ## User Preferences
 

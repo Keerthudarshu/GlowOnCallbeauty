@@ -6,6 +6,7 @@ let currentSection = 'home';
 document.addEventListener('DOMContentLoaded', function() {
     updateCartBadge();
     populateServiceSections();
+    populateHomepageServices();
     setupEventListeners();
 });
 
@@ -64,6 +65,44 @@ function updateBottomNav(activeSection) {
     if (activeNavItem) {
         activeNavItem.classList.add('active');
     }
+}
+
+// Populate homepage featured services
+function populateHomepageServices() {
+    const container = document.getElementById('featured-services-container');
+    if (!container) return;
+    
+    // Get top services from each category
+    const topServices = [
+        servicesData.facials[0], // HydraFacial
+        servicesData.facials[3], // Korean Glass Skin
+        servicesData['lash-extensions'][0], // Classic Lash
+        servicesData.combos[0] // Top combo
+    ];
+    
+    container.innerHTML = topServices.map(service => createFeaturedServiceCard(service)).join('');
+}
+
+function createFeaturedServiceCard(service) {
+    return `
+        <div class="service-detail-card" onclick="addToCart('${service.id}')">
+            <div class="service-image">
+                <img src="${service.image}" alt="${service.name}" />
+                <div class="service-label">${service.category.charAt(0).toUpperCase() + service.category.slice(1)}</div>
+            </div>
+            <div class="service-info">
+                <h3>${service.name}</h3>
+                <div class="service-duration">
+                    <i class="fas fa-clock"></i>
+                    <span>${service.duration} mins</span>
+                </div>
+                <div class="service-price">
+                    <span class="current-price">₹${service.discountedPrice}</span>
+                    ${service.originalPrice !== service.discountedPrice ? `<span class="original-price">₹${service.originalPrice}</span>` : ''}
+                </div>
+            </div>
+        </div>
+    `;
 }
 
 // Populate service sections
@@ -318,16 +357,166 @@ function handleCheckout() {
         return;
     }
     
+    showCustomerDetailsModal();
+}
+
+function showCustomerDetailsModal() {
+    const modal = document.createElement('div');
+    modal.className = 'customer-modal';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Customer Details</h2>
+                <button class="close-btn" onclick="closeCustomerModal()">&times;</button>
+            </div>
+            <form id="customer-form">
+                <div class="form-group">
+                    <label for="customer-name">Full Name *</label>
+                    <input type="text" id="customer-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="customer-phone">Phone Number *</label>
+                    <input type="tel" id="customer-phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="customer-address">Address *</label>
+                    <textarea id="customer-address" rows="3" required placeholder="Enter your complete address"></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="button" class="location-btn" onclick="shareLocation()">
+                        <i class="fas fa-map-marker-alt"></i>
+                        Share Current Location
+                    </button>
+                    <span id="location-status" class="location-status"></span>
+                </div>
+                <div class="form-group">
+                    <label for="preferred-date">Preferred Date</label>
+                    <input type="date" id="preferred-date" min="${new Date().toISOString().split('T')[0]}">
+                </div>
+                <div class="form-group">
+                    <label for="preferred-time">Preferred Time</label>
+                    <select id="preferred-time">
+                        <option value="">Select Time</option>
+                        <option value="09:00">9:00 AM</option>
+                        <option value="10:00">10:00 AM</option>
+                        <option value="11:00">11:00 AM</option>
+                        <option value="12:00">12:00 PM</option>
+                        <option value="13:00">1:00 PM</option>
+                        <option value="14:00">2:00 PM</option>
+                        <option value="15:00">3:00 PM</option>
+                        <option value="16:00">4:00 PM</option>
+                        <option value="17:00">5:00 PM</option>
+                        <option value="18:00">6:00 PM</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="special-requests">Special Requests</label>
+                    <textarea id="special-requests" rows="2" placeholder="Any special requirements or allergies?"></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="cancel-btn" onclick="closeCustomerModal()">Cancel</button>
+                    <button type="submit" class="submit-btn">Book Appointment</button>
+                </div>
+            </form>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    document.getElementById('customer-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        submitBooking();
+    });
+}
+
+function closeCustomerModal() {
+    const modal = document.querySelector('.customer-modal');
+    if (modal) {
+        modal.remove();
+    }
+}
+
+function shareLocation() {
+    const locationStatus = document.getElementById('location-status');
+    
+    if (!navigator.geolocation) {
+        locationStatus.textContent = 'Location sharing not supported';
+        locationStatus.className = 'location-status error';
+        return;
+    }
+    
+    locationStatus.textContent = 'Getting location...';
+    locationStatus.className = 'location-status loading';
+    
+    navigator.geolocation.getCurrentPosition(
+        function(position) {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+            locationStatus.textContent = `Location shared (${lat.toFixed(6)}, ${lng.toFixed(6)})`;
+            locationStatus.className = 'location-status success';
+            locationStatus.dataset.location = `${lat},${lng}`;
+        },
+        function(error) {
+            locationStatus.textContent = 'Failed to get location';
+            locationStatus.className = 'location-status error';
+            console.error('Location error:', error);
+        }
+    );
+}
+
+function submitBooking() {
+    const name = document.getElementById('customer-name').value;
+    const phone = document.getElementById('customer-phone').value;
+    const address = document.getElementById('customer-address').value;
+    const date = document.getElementById('preferred-date').value;
+    const time = document.getElementById('preferred-time').value;
+    const requests = document.getElementById('special-requests').value;
+    const locationStatus = document.getElementById('location-status');
+    const location = locationStatus.dataset.location || '';
+    
+    if (!name || !phone || !address) {
+        showNotification('Please fill in all required fields');
+        return;
+    }
+    
     const total = cart.reduce((sum, item) => sum + (item.discountedPrice * item.quantity), 0);
     const totalServices = cart.reduce((sum, item) => sum + item.quantity, 0);
     
-    const whatsappMessage = encodeURIComponent(
-        `Hello! I'd like to book the following services:\n\n` +
-        cart.map(item => `${item.name} x${item.quantity} - ₹${item.discountedPrice * item.quantity}`).join('\n') +
-        `\n\nTotal: ₹${total}\nServices: ${totalServices}\n\nPlease confirm my appointment. Thank you!`
-    );
+    let whatsappMessage = `🌟 *GlowOnCall Booking Request* 🌟\n\n`;
+    whatsappMessage += `👤 *Customer Details:*\n`;
+    whatsappMessage += `Name: ${name}\n`;
+    whatsappMessage += `Phone: ${phone}\n`;
+    whatsappMessage += `Address: ${address}\n`;
     
-    window.open(`https://wa.me/919876543210?text=${whatsappMessage}`, '_blank');
+    if (location) {
+        whatsappMessage += `📍 Location: https://maps.google.com/?q=${location}\n`;
+    }
+    
+    whatsappMessage += `\n💄 *Services Booked:*\n`;
+    cart.forEach(item => {
+        whatsappMessage += `• ${item.name} x${item.quantity} - ₹${item.discountedPrice * item.quantity}\n`;
+    });
+    
+    whatsappMessage += `\n💰 *Total Amount:* ₹${total}\n`;
+    whatsappMessage += `📊 *Total Services:* ${totalServices}\n`;
+    
+    if (date && time) {
+        whatsappMessage += `\n⏰ *Preferred Schedule:*\n`;
+        whatsappMessage += `Date: ${date}\n`;
+        whatsappMessage += `Time: ${time}\n`;
+    }
+    
+    if (requests) {
+        whatsappMessage += `\n📝 *Special Requests:*\n${requests}\n`;
+    }
+    
+    whatsappMessage += `\nPlease confirm my appointment. Thank you! 💕`;
+    
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+    window.open(`https://wa.me/917892783668?text=${encodedMessage}`, '_blank');
+    
+    closeCustomerModal();
+    showNotification('Booking request sent! We will contact you soon.');
 }
 
 // Override cart navigation to render cart
