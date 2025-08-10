@@ -11,10 +11,10 @@ document.addEventListener('DOMContentLoaded', function() {
     populateHomepageServices();
     setupEventListeners();
     setupFilterButtons();
-    
-    // Initialize with waxing services (default active filter)
-    populateFilteredServices('waxing');
-    
+
+    // Initialize with facial services (default active filter)
+    populateFilteredServices('facials');
+
     // Setup product filter buttons
     setupProductFilterButtons();
 });

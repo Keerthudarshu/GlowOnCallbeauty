@@ -10,21 +10,23 @@
 </head>
 <body>
     <!-- Header -->
-    <header class="header">
-        <div class="header-top">
+    <header class="header" style=" background: #f4ddd9;">
+        <div class="header-top" >
             <div class="logo-section">
                 <img src="logo.png" alt="GlowOnCall" class="header-logo" />
             </div>
             <div class="location-selector">
                 <i class="fas fa-map-marker-alt"></i>
-                <span>Bangalore</span>
+                <span>Bangalore</span>  
                 <i class="fas fa-chevron-down"></i>
             </div>
             <div class="header-actions">
                 <a href="https://wa.me/917892783668" class="whatsapp-btn">
                     <i class="fab fa-whatsapp"></i>
                 </a>
-                <div class="profile-btn">K</div>
+                <a href="tel:+917892783668" class="profile-btn call-btn" title="Call GlowOnCall">
+                    <i class="fas fa-phone"></i>
+                </a>
             </div>
         </div>
         <div class="search-container">
@@ -32,7 +34,7 @@
                 <input type="text" id="searchInput" placeholder="Search for services..." />
                 <i class="fas fa-search search-icon"></i>
             </div>
-            <button class="get-look-btn">GlowOnCall NOW</button>
+            <button class="get-look-btn" href="#home">GlowOnCall NOW</button>
         </div>
     </header>
 
@@ -65,8 +67,8 @@
             <div class="section-header">
                 <h2>Complete Beauty Care</h2>
             </div>
-            <div class="service-grid enhanced">
-                <div class="service-card animated" onclick="showCategory('offers')">
+            <div class="service-grid enhanced square-cards">
+                <div class="service-card animated square-card" onclick="showCategory('offers')">
                     <div class="service-icon weekday-offer">
                         <div class="icon-overlay"></div>
                         <span class="offer-text">BUY 1<br>GET 1</span>
@@ -74,30 +76,28 @@
                     <p>Weekday Offer</p>
                     <div class="card-shine"></div>
                 </div>
-                <div class="service-card animated" onclick="showCategory('facials')">
+                <div class="service-card animated square-card" onclick="showCategory('facials')">
                     <div class="service-icon">
                         <div class="icon-overlay"></div>
-                        <img src="https://pixabay.com/get/gb116eaf2ba075ffa3c0d6f2318dbef8951825e46ef5417fe672e1524a3c38a7a490e22c9cab25fd56b525e0ea153b927b29913b96eaab805492ea968b051009f_1280.jpg" alt="Facial" />
+                        <img src="assets/facial.jpg" alt="Facial" />
                     </div>
-                    <p>Salon At Home</p>
+                    <p>Facial</p>
                     <div class="card-shine"></div>
                 </div>
-                <div class="service-card animated" onclick="showCategory('combos')">
+                <div class="service-card animated square-card" onclick="showCategory('lash-extensions')">
                     <div class="service-icon">
                         <div class="icon-overlay"></div>
-                        <div class="combo-badge">
-                            <span>CHOOSE<br>ANY 4<br>@999</span>
-                        </div>
+                        <img src="assets/lash.png" alt="Lash Extension" />
                     </div>
-                    <p>Choose Any 4 @999</p>
+                    <p>Lash Extension</p>
                     <div class="card-shine"></div>
                 </div>
-                <div class="service-card animated" onclick="showCategory('facials')">
+                <div class="service-card animated square-card" onclick="showCategory('eyebrows')">
                     <div class="service-icon">
                         <div class="icon-overlay"></div>
-                        <img src="https://pixabay.com/get/g8ae74fe373c7e924a2109f712a31022bad48f423e505be8df3c84b10afec7172a35d53715feb832e38e6d0ab8ab8695a89f6ef4931e6dd5d51ada974d552da7e_1280.jpg" alt="HydraFacial" />
+                        <img src="assets/Eyebrow Treatments.jpeg" alt="Eyebrow Treatments" />
                     </div>
-                    <p>Hydra Facial</p>
+                    <p>Eyebrows</p>
                     <div class="card-shine"></div>
                 </div>
             </div>
@@ -109,10 +109,10 @@
             </div>
             
             <div class="service-filters">
-                <button class="filter-btn active" data-category="waxing">Waxing</button>
-                <button class="filter-btn" data-category="facials">Facial</button>
-                <button class="filter-btn" data-category="facials">Hydra Facial</button>
-                <button class="filter-btn" data-category="pedicure-manicure">Pedicure & Manicure</button>
+                <button class="filter-btn active" data-category="facials">Facial</button> 
+                <button class="filter-btn" data-category="lash-extensions">Lash Extension</button>
+                <button class="filter-btn" data-category="eyebrows">Eyebrows</button>
+                <button class="filter-btn " data-category="combos">Combos</button>
             </div>
 
             <div class="scrollable-container">
@@ -134,19 +134,19 @@
             <div class="product-categories">
                 <div class="product-category" onclick="showProductCategory('hair-products')">
                     <div class="product-icon">
-                        <img src="https://pixabay.com/get/g2aa6bf3271666c0b57e4b14cb627351d0ec70eb081ea493ca39729125507b653f8c741b68bd01852ed2026bb27a463e10eb0d07d0616ad58eb5e17d0650ba06e_1280.jpg" alt="Hair Products" />
+                        <img src="assets/hair.jpeg" alt="Hair Products" />
                     </div>
                     <p>Hair Products</p>
                 </div>
                 <div class="product-category" onclick="showProductCategory('body-products')">
                     <div class="product-icon">
-                        <img src="https://pixabay.com/get/gb760880e55415b3e3ffab7c942a974bf9cd09fd50d13d48b5b720b085ae397180a0dc0763ccdae88e899c9566d183c0ea4eb4417c69bc839c8e17ef30051f5dcf_1280.jpg" alt="Body Products" />
+                        <img src="assets/body products.jpg" alt="Body Products" />
                     </div>
                     <p>Body Products</p>
                 </div>
                 <div class="product-category" onclick="showProductCategory('face-products')">
                     <div class="product-icon">
-                        <img src="https://pixabay.com/get/gbc48cdb9d9eae0a0f0b3986258219b13bc9d0563d5089c4ff5abb4fee7f2ace6de8de46c8a66b95b06a380b7a0083921891d24f36d2d4a1108375ce2f1637728_1280.jpg" alt="Face Products" />
+                        <img src="assets/face.jpeg" alt="Face Products" />
                     </div>
                     <p>Face Products</p>
                 </div>
@@ -158,10 +158,28 @@
             </div>
             <div class="package-cards">
                 <div class="package-card bridal">
+                    <div class="package-images">
+                        <img src="assets/facial/Dermaplaning.jpg" alt="Dermaplaning" style="width:48px;height:48px;object-fit:cover;border-radius:8px;margin:2px;" />
+                        <img src="assets/facial/Golden Glow Facial.jpg" alt="Golden Glow Facial" style="width:48px;height:48px;object-fit:cover;border-radius:8px;margin:2px;" />
+                        <img src="assets/facial/Charcoal Detox Facial.jpg" alt="Charcoal Detox Facial" style="width:48px;height:48px;object-fit:cover;border-radius:8px;margin:2px;" />
+                        <img src="assets/facial/Korean Glass Skin Facial.avif" alt="Korean Glass Skin Facial" style="width:48px;height:48px;object-fit:cover;border-radius:8px;margin:2px;" />
+                        <img src="assets/facial/istockphoto-1254805067-612x612.jpg" alt="Facial" style="width:48px;height:48px;object-fit:cover;border-radius:8px;margin:2px;" />
+                        <img src="assets/facial/Collagen Renewal Facial.jpg" alt="Collagen Renewal Facial" style="width:48px;height:48px;object-fit:cover;border-radius:8px;margin:2px;" />
+                        <img src="assets/facial/HydraFacial.png" alt="HydraFacial" style="width:48px;height:48px;object-fit:cover;border-radius:8px;margin:2px;" />
+                    </div>
                     <h3>BRIDAL GLOW<br>THE KOREAN WAY!</h3>
                     <p>with FREE Korean Wax</p>
                 </div>
                 <div class="package-card beauty">
+                    <div class="package-images">
+                        <img src="assets/facial/Dermaplaning.jpg" alt="Dermaplaning" style="width:48px;height:48px;object-fit:cover;border-radius:8px;margin:2px;" />
+                        <img src="assets/facial/Golden Glow Facial.jpg" alt="Golden Glow Facial" style="width:48px;height:48px;object-fit:cover;border-radius:8px;margin:2px;" />
+                        <img src="assets/facial/Charcoal Detox Facial.jpg" alt="Charcoal Detox Facial" style="width:48px;height:48px;object-fit:cover;border-radius:8px;margin:2px;" />
+                        <img src="assets/facial/Korean Glass Skin Facial.avif" alt="Korean Glass Skin Facial" style="width:48px;height:48px;object-fit:cover;border-radius:8px;margin:2px;" />
+                        <img src="assets/facial/istockphoto-1254805067-612x612.jpg" alt="Facial" style="width:48px;height:48px;object-fit:cover;border-radius:8px;margin:2px;" />
+                        <img src="assets/facial/Collagen Renewal Facial.jpg" alt="Collagen Renewal Facial" style="width:48px;height:48px;object-fit:cover;border-radius:8px;margin:2px;" />
+                        <img src="assets/facial/HydraFacial.png" alt="HydraFacial" style="width:48px;height:48px;object-fit:cover;border-radius:8px;margin:2px;" />
+                    </div>
                     <h3>10 BEAUTY SERVICES<br>1 PERFECT YOU!</h3>
                 </div>
             </div>
@@ -239,7 +257,7 @@
                 </div>
                 <div class="category-card" onclick="showCategory('facials')">
                     <div class="category-icon">
-                        <img src="https://pixabay.com/get/gb116eaf2ba075ffa3c0d6f2318dbef8951825e46ef5417fe672e1524a3c38a7a490e22c9cab25fd56b525e0ea153b927b29913b96eaab805492ea968b051009f_1280.jpg" alt="Salon At Home" />
+                        <img src="assets/facial.jpg" alt="Facial" />
                     </div>
                     <p>Salon At Home</p>
                 </div>
@@ -249,60 +267,28 @@
                     </div>
                     <p>Best Selling Packages</p>
                 </div>
-                <div class="category-card" onclick="showCategory('combos')">
-                    <div class="category-icon combo-badge">
-                        <span>Choose Any 4 @999</span>
-                    </div>
-                    <p>Choose Any 4 @999</p>
-                </div>
-                <div class="category-card" onclick="showCategory('waxing')">
-                    <div class="category-icon">
-                        <img src="https://pixabay.com/get/g96aed99773d5a20acf3d1301b3a3f9ecc8506a4b3bdb4e4d8f0fa595f6a627928916fa96a25fba54f9195aa9ae9f041e818f467d566bd1d432781b72bf4e400c_1280.jpg" alt="Waxing" />
-                    </div>
-                    <p>Waxing</p>
-                </div>
+               
+               
                 <div class="category-card" onclick="showCategory('facials')">
                     <div class="category-icon">
-                        <img src="https://pixabay.com/get/ge0a8c406961f1a787b3f75f1ffab01d0061a722b2bc21afcb3a95241f14ebeb9516b95a15631ebef41238285ca605077cd15d8bc03382fda73a6058766a60775_1280.jpg" alt="Facial" />
+                        <img src="assets/facial.jpg" alt="Facial" />
                     </div>
                     <p>Facial</p>
                 </div>
-                <div class="category-card" onclick="showCategory('facials')">
-                    <div class="category-icon">
-                        <img src="https://pixabay.com/get/g8ae74fe373c7e924a2109f712a31022bad48f423e505be8df3c84b10afec7172a35d53715feb832e38e6d0ab8ab8695a89f6ef4931e6dd5d51ada974d552da7e_1280.jpg" alt="Hydra Facial" />
-                    </div>
-                    <p>Hydra Facial</p>
-                </div>
+                
                 <div class="category-card" onclick="showCategory('lash-extensions')">
                     <div class="category-icon">
-                        <img src="https://pixabay.com/get/gac2bfd673f199449ff742e7cd905a28200e39661bc093794defb1dd4b43f6dc4b28a702652e79926f534c514ad7c72ed5bb535f2cfe669e534fd17ac79fe90b4_1280.jpg" alt="Pedicure & Manicure" />
+                        <img src="assets/lash.png" alt="Lash Extension" />
                     </div>
-                    <p>Pedicure & Manicure</p>
+                    <p>Lash Extension</p>
                 </div>
                 <div class="category-card" onclick="showCategory('eyebrows')">
                     <div class="category-icon">
-                        <img src="https://pixabay.com/get/g77167ea985a0ec296cdf0b62402ec68128cbf2bfaf63cb692edf5d06a1aff318f5f25cab424162d376b14b2f242b9da9f105865eb74f00dd0e3db8d662fd7796_1280.jpg" alt="DeTan/Bleach" />
+                        <img src="assets/Eyebrow Treatments.jpeg" alt="Eyebrow Treatments" />
                     </div>
-                    <p>DeTan/Bleach</p>
+                    <p>Eyebrows</p>
                 </div>
-                <div class="category-card" onclick="showCategory('threading')">
-                    <div class="category-icon">
-                        <img src="https://pixabay.com/get/g24a6e6b080f74cae9c751977f09dad1f84acafb620737ee45e674449345d90f04a7c810731f95bda977918f7b408d6b637ee485effdd3dd8cab6b4d38c64d22a_1280.jpg" alt="Threading" />
-                    </div>
-                    <p>Threading</p>
-                </div>
-                <div class="category-card" onclick="showCategory('hair-treatment')">
-                    <div class="category-icon">
-                        <img src="https://pixabay.com/get/g2aa6bf3271666c0b57e4b14cb627351d0ec70eb081ea493ca39729125507b653f8c741b68bd01852ed2026bb27a463e10eb0d07d0616ad58eb5e17d0650ba06e_1280.jpg" alt="Hair Treatment" />
-                    </div>
-                    <p>Hair Treatment</p>
-                </div>
-                <div class="category-card" onclick="showCategory('spa-at-home')">
-                    <div class="category-icon">
-                        <img src="https://pixabay.com/get/g883d74d7c0f94303024b5dbc1218bb45071aa0b8d52ae5d30ff20136294b45bef8e803eddc7a49f540895abb4ad42b1a19a26f50e633ccc72e7ca1f966bef030_1280.jpg" alt="Spa At Home" />
-                    </div>
-                    <p>Spa At Home</p>
-                </div>
+                
             </div>
         </section>
 
@@ -347,47 +333,15 @@
             <div id="combos-content" class="services-list"></div>
         </section>
 
-        <section id="waxing" class="service-category-section">
-            <div class="page-header">
-                <button class="back-btn" onclick="showSection('categories')">
-                    <i class="fas fa-arrow-left"></i>
-                </button>
-                <h1>Waxing Services</h1>
-            </div>
-            <div id="waxing-content" class="services-list"></div>
-        </section>
+        
 
-        <section id="threading" class="service-category-section">
-            <div class="page-header">
-                <button class="back-btn" onclick="showSection('categories')">
-                    <i class="fas fa-arrow-left"></i>
-                </button>
-                <h1>Threading Services</h1>
-            </div>
-            <div id="threading-content" class="services-list"></div>
-        </section>
+       
 
-        <section id="hair-treatment" class="service-category-section">
-            <div class="page-header">
-                <button class="back-btn" onclick="showSection('categories')">
-                    <i class="fas fa-arrow-left"></i>
-                </button>
-                <h1>Hair Treatments</h1>
-            </div>
-            <div id="hair-treatment-content" class="services-list"></div>
-        </section>
+        
 
-        <section id="spa-at-home" class="service-category-section">
-            <div class="page-header">
-                <button class="back-btn" onclick="showSection('categories')">
-                    <i class="fas fa-arrow-left"></i>
-                </button>
-                <h1>Spa At Home</h1>
-            </div>
-            <div id="spa-at-home-content" class="services-list"></div>
-        </section>
+       
 
-        <section id="pedicure-manicure" class="service-category-section">
+        <!-- <section id="pedicure-manicure" class="service-category-section">
             <div class="page-header">
                 <button class="back-btn" onclick="showSection('categories')">
                     <i class="fas fa-arrow-left"></i>
@@ -395,7 +349,7 @@
                 <h1>Pedicure & Manicure</h1>
             </div>
             <div id="pedicure-manicure-content" class="services-list"></div>
-        </section>
+        </section> -->
 
         <section id="products" class="service-category-section">
             <div class="page-header">
