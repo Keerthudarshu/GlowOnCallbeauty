@@ -121,7 +121,7 @@ function createFeaturedServiceCard(service) {
                 <div class="featured-service-label">${service.category.charAt(0).toUpperCase() + service.category.slice(1)}</div>
                 ${discountPercent > 0 ? `<div class="featured-discount-badge">${discountPercent}% OFF</div>` : ''}
             </div>
-            <div class="featured-card-content">
+      z      <div class="featured-card-content">
                 <h3 class="featured-card-title">${service.name}</h3>
                 <div class="featured-card-details">
                     <div class="featured-duration">

@@ -1,3 +1,23 @@
+/* Coming Soon Overlay for Featured Services */
+.coming-soon-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(80,80,80,0.85);
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    border-radius: 16px;
+    letter-spacing: 2px;
+    border: 3px solid red;
+    box-shadow: 0 0 12px 2px red;
+}
 .square-card .service-icon img {
     width: 100%;
     height: 100%;
@@ -26,11 +46,11 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: #f5f5f5;
+    background-color: #bc7b23;
     color: #1e88e5;
     font-size: 1.3rem;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    transition: background 0.2s, color 0.2s;
+    
     text-decoration: none;
     margin-left: 12px;
 }
@@ -88,7 +108,7 @@ body {
 
 /* Variables */
 :root {
-    --primary-color: #8B1538;
+    --primary-color: #bc7b23;
     --secondary-color: #FFF5F5;
     --accent-color: #FF6B6B;
     --text-dark: #333;
@@ -124,7 +144,7 @@ body {
 .header-logo {
     height: 35px;
     width: auto;
-    border-radius: 6px;
+    border-radius: 0px;
 }
 
 .location-selector {
@@ -282,7 +302,7 @@ section.active {
     max-width: 200px;
     height: 250px;
     object-fit: cover;
-    border-radius: var(--border-radius);
+   
 }
 
 /* Promo Section */
@@ -520,7 +540,7 @@ section.active {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(45deg, rgba(139, 21, 56, 0.1), rgba(139, 21, 56, 0.3));
+    background: #bc7b23;
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -748,12 +768,12 @@ section.active {
 }
 
 .featured-add-btn {
-    background: linear-gradient(135deg, var(--primary-color), #a01b42);
+    background: #bc7b23;
     color: white;
 }
 
 .featured-add-btn:hover {
-    background: linear-gradient(135deg, #6d0f2a, var(--primary-color));
+    background: linear-gradient(135deg, #bc7b23, var(--primary-color));
     transform: translateY(-1px);
 }
 
@@ -1114,18 +1134,18 @@ section.active {
 }
 
 .service-add-btn {
-    background: linear-gradient(135deg, var(--primary-color), #a01b42);
+    background: linear-gradient(135deg, var(--primary-color), #bc7b23);
     color: white;
 }
 
 .service-add-btn:hover {
-    background: linear-gradient(135deg, #6d0f2a, var(--primary-color));
+    background: linear-gradient(135deg, #bc7b23, var(--primary-color));
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(139, 21, 56, 0.3);
+    box-shadow: 0 4px 12px #bc7b23;
 }
 
 .add-btn:hover {
-    background: #6d0f2a;
+    background: #bc7b23;
 }
 
 .combo-description {
@@ -1614,14 +1634,19 @@ section.active {
 .hero-logo-image {
     height: 100px;
     width: auto;
-    border-radius: 12px;
-    transition: transform 0.3s ease;
-    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
+    background: transparent; /* remove fixed color so it blends */
+   
+    opacity: 0.98; /* almost fully opaque for crisp look */
+    border-radius: 10px; /* makes it circular for smooth blending */
+    border: none;
+    backdrop-filter: blur(1px); /* subtle glass effect */
+    -webkit-backdrop-filter: blur(100px);
 }
 
-.hero-logo-image:hover {
-    transform: scale(1.05);
-}
+
+/* .hero-logo-image:hover {
+    transform: scale(1.05)
+} */
 
 /* Customer Modal */
 .customer-modal {
@@ -1799,14 +1824,14 @@ section.active {
 }
 
 .add-btn {
-    background: linear-gradient(135deg, var(--primary-color), #a01b42);
+    background: linear-gradient(135deg, var(--primary-color), #bc7b23);
     transition: all 0.3s ease;
 }
 
 .add-btn:hover {
-    background: linear-gradient(135deg, #6d0f2a, var(--primary-color));
+    background: linear-gradient(135deg, #bc7b23, var(--primary-color));
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(139, 21, 56, 0.3);
+    box-shadow: 0 4px 12px #bc7b23;
 }
 
 .service-card:hover, .category-card:hover {
