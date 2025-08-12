@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GlowOnCall - Beauty Services at Home</title>
+    <link rel="icon" type="image/png" href="logo.png">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -13,7 +14,7 @@
     <header class="header" style=" background: #f4ddd9;">
         <div class="header-top" >
             <div class="logo-section">
-                <img src="logo.png" alt="GlowOnCall" class="header-logo" />
+                <img src="logo.png" alt="GlowOnCall" class="header-logo" style="width:70px;height:70px;object-fit:contain;" />
             </div>
             <div class="location-selector">
                 <i class="fas fa-map-marker-alt"></i>
@@ -21,10 +22,10 @@
                 <i class="fas fa-chevron-down"></i>
             </div>
             <div class="header-actions">
-                <a href="https://wa.me/917892783668" class="whatsapp-btn">
+                <a href="https://wa.me/918431614767" class="whatsapp-btn">
                     <i class="fab fa-whatsapp"></i>
                 </a>
-                <a href="tel:+917892783668" class="profile-btn call-btn" title="Call GlowOnCall">
+                <a href="tel:+918431614767" class="profile-btn call-btn" title="Call GlowOnCall">
                     <i class="fas fa-phone"></i>
                 </a>
             </div>
@@ -56,10 +57,10 @@
             
             <div class="promo-section">
                 <div class="promo-card buy-one">
-                    <span class="promo-badge" onclick="showCategory('combos')">BUY 1 GET 1</span>
+                    <span class="promo-badge" onclick="showCategory('combos')" style="color: black;">Combos</span>
                 </div>
                 <div class="promo-card free-service">
-                    <span class="promo-badge" onclick="showCategory('free-services')">FREE</span>
+                    <span class="promo-badge" onclick="showCategory('free-services')">Services</span>
                 </div>
             </div>
 
@@ -68,12 +69,12 @@
                 <h2>Complete Beauty Care</h2>
             </div>
             <div class="service-grid enhanced square-cards">
-                <div class="service-card animated square-card" onclick="showCategory('offers')">
+                <div class="service-card animated square-card" onclick="showCategory('combos')">
                     <div class="service-icon weekday-offer">
                         <div class="icon-overlay"></div>
-                        <span class="offer-text">BUY 1<br>GET 1</span>
+                        <img src="assets/body products.jpg" alt="Facial" />
                     </div>
-                    <p>Weekday Offer</p>
+                    <p>Combos</p>
                     <div class="card-shine"></div>
                 </div>
                 <div class="service-card animated square-card" onclick="showCategory('facials')">

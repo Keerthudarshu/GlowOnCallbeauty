@@ -401,15 +401,8 @@ function addToCart(serviceId) {
         ...servicesData['lash-extensions'], 
         ...servicesData.eyebrows, 
         ...servicesData.addons, 
-        ...servicesData.combos,
-        ...servicesData.waxing,
-        ...servicesData.threading,
-        ...servicesData['hair-treatment'],
-        ...servicesData['spa-at-home'],
-        ...servicesData['pedicure-manicure'],
-        ...servicesData['hair-products'],
-        ...servicesData['body-products'],
-        ...servicesData['face-products']
+        ...servicesData.combos
+        
     ];
     const service = allServices.find(s => s.id === serviceId);
     
@@ -766,8 +759,8 @@ function submitBooking() {
     whatsappMessage += `\nPlease confirm my appointment. Thank you! 💕`;
     
     const encodedMessage = encodeURIComponent(whatsappMessage);
-    window.open(`https://wa.me/917892783668?text=${encodedMessage}`, '_blank');
-    
+    window.open(`https://wa.me/918431614767?text=${encodedMessage}`, '_blank');
+
     closeCustomerModal();
     showNotification('Booking request sent! We will contact you soon.');
 }
@@ -1031,8 +1024,8 @@ function submitAppointment(serviceId) {
     whatsappMessage += `\nPlease confirm my appointment. Thank you! 💕`;
     
     const encodedMessage = encodeURIComponent(whatsappMessage);
-    window.open(`https://wa.me/917892783668?text=${encodedMessage}`, '_blank');
-    
+    window.open(`https://wa.me/918431614767?text=${encodedMessage}`, '_blank');
+
     closeAppointmentModal();
     showNotification('Appointment booked! We will contact you for confirmation.');
 }

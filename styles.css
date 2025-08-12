@@ -80,7 +80,7 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: #f4ddd9;
+    background: #ffc9b6;
     color: #333;
     padding-bottom: 80px;
     overflow-x: hidden;
@@ -245,10 +245,10 @@ section.active {
 
 /* Hero Section */
 .hero-banner {
-    background: linear-gradient(135deg, rgba(139, 21, 56, 0.9), rgba(139, 21, 56, 0.7)), 
-                url('https://images.unsplash.com/photo-1559599189-fe84dea4eb79?w=800&h=600&fit=crop') center/cover;
+    /* background:  url('https://images.unsplash.com/photo-1559599189-fe84dea4eb79?w=800&h=600&fit=crop') center/cover; */
     padding: 40px 20px;
     display: flex;
+    
     align-items: center;
     justify-content: space-between;
     position: relative;
@@ -259,7 +259,8 @@ section.active {
 .hero-content h1 {
     font-size: 48px;
     font-weight: 700;
-    color: white;
+    color: rgb(4, 4, 4);
+    
     line-height: 1.1;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
@@ -268,6 +269,7 @@ section.active {
     font-size: 24px;
     color: var(--text-dark);
     margin-top: 8px;
+    color: rgb(12, 12, 12);
 }
 
 .hero-image {
@@ -302,11 +304,12 @@ section.active {
 }
 
 .buy-one {
-    background: linear-gradient(135deg, #2E7D32, #4CAF50);
+    background: linear-gradient(135deg, #fedb9a, #fedb9a);
+    color: black;
 }
 
 .free-service {
-    background: linear-gradient(135deg, #FF5722, #FF8A65);
+    background: linear-gradient(135deg, #bc7b23, #bc7b23);
 }
 
 .promo-badge {
@@ -1812,12 +1815,12 @@ section.active {
 }
 
 .get-look-btn {
-    background: linear-gradient(135deg, var(--primary-color), #a01b42);
+    background: linear-gradient(135deg, var(--primary-color), #efb09b);
     transition: all 0.3s ease;
 }
 
 .get-look-btn:hover {
-    background: linear-gradient(135deg, #6d0f2a, var(--primary-color));
+    background: linear-gradient(135deg, #ffc9b6, var(--primary-color));
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(139, 21, 56, 0.3);
 }
