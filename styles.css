@@ -398,6 +398,7 @@ section.active {
 }
 
 /* Service Grid */
+/* Service Grid */
 .service-grid, .category-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

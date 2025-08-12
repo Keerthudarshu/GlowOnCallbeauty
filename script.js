@@ -574,12 +574,21 @@ function showSearchResults(results) {
         </div>
         <div class="services-list">
             ${results.length > 0 
-                ? results.map(service => createServiceCard(service)).join('')
+                ? results.map(item => {
+                    if (item.image && item.category) {
+                        // Service card
+                        return createServiceCard(item);
+                    } else if (item.image && item.type) {
+                        // Product card
+                        return createProductCard(item);
+                    } else {
+                        return '';
+                    }
+                }).join('')
                 : '<p class="no-results">No services found matching your search.</p>'
             }
         </div>
     `;
-    
     showSection('search-results');
 }
 
