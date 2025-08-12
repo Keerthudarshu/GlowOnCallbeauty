@@ -4,6 +4,22 @@ let currentSection = 'home';
 let bookedSlots = JSON.parse(localStorage.getItem('bookedSlots')) || {};
 let previousSection = 'home';
 
+// Define available services (everything else will show "Coming Soon")
+const availableServices = [
+    'hydrafacial',
+    'dermaplaning-facial', 
+    'classic-lash',
+    'combo-hydra-classic-derma',
+    'brow-tint',
+    'eyebrow-lamination',
+    'products'
+];
+
+// Function to check if a service is available
+function isServiceAvailable(serviceId) {
+    return availableServices.includes(serviceId);
+}
+
 // Initialize app
 document.addEventListener('DOMContentLoaded', function() {
     updateCartBadge();
@@ -174,14 +190,16 @@ function populateServiceCategory(categoryId) {
 function createServiceCard(service) {
     const discount = service.originalPrice - service.discountedPrice;
     const discountPercent = Math.round((discount / service.originalPrice) * 100);
+    const isAvailable = isServiceAvailable(service.id);
     
     return `
-        <div class="service-card-wrapper">
+        <div class="service-card-wrapper ${!isAvailable ? 'coming-soon-card' : ''}">
             <div class="service-card-image">
                 <img src="${service.image}" alt="${service.name}" loading="lazy" />
                 ${service.isAddon ? '<div class="service-badge addon">ADD ON</div>' : ''}
                 ${service.services ? '<div class="service-badge combo">COMBO</div>' : ''}
                 ${discountPercent > 0 ? `<div class="discount-badge">${discountPercent}% OFF</div>` : ''}
+                ${!isAvailable ? '<div class="coming-soon-overlay">COMING SOON</div>' : ''}
             </div>
             
             <div class="service-card-content">
@@ -204,11 +222,11 @@ function createServiceCard(service) {
                 </div>
                 
                 <div class="service-card-actions">
-                    <button class="service-view-btn" onclick="showServiceDetail('${service.id}')">
+                    <button class="service-view-btn" onclick="showServiceDetail('${service.id}')" ${!isAvailable ? 'disabled' : ''}>
                         <i class="fas fa-eye"></i>
                         View Details
                     </button>
-                    <button class="service-add-btn" onclick="addToCart('${service.id}')">
+                    <button class="service-add-btn" onclick="addToCart('${service.id}')" ${!isAvailable ? 'disabled' : ''}>
                         <i class="fas fa-shopping-cart"></i>
                         Add to Cart
                     </button>
@@ -315,12 +333,17 @@ function createProductCard(product) {
         ? Math.round((1 - product.discountedPrice/product.originalPrice) * 100) 
         : 0;
     
+    // All products show as coming soon based on requirements
+    const isProductCategory = ['hair-products', 'body-products', 'face-products'].includes(product.category);
+    const isComingSoon = isProductCategory;
+    
     return `
-        <div class="service-card">
+        <div class="service-card ${isComingSoon ? 'coming-soon-card' : ''}">
             <div class="service-card-image">
                 <img src="${product.image}" alt="${product.name}" />
                 <div class="service-label">${product.category.toUpperCase().replace('-', ' ')}</div>
                 ${discount > 0 ? `<div class="discount-badge">${discount}% OFF</div>` : ''}
+                ${isComingSoon ? '<div class="coming-soon-overlay">COMING SOON</div>' : ''}
             </div>
             <div class="service-card-content">
                 <div class="service-card-header">
@@ -339,11 +362,11 @@ function createProductCard(product) {
                 </div>
                 
                 <div class="service-card-actions">
-                    <button class="service-view-btn" onclick="showServiceDetail('${product.id}')">
+                    <button class="service-view-btn" onclick="showServiceDetail('${product.id}')" ${isComingSoon ? 'disabled' : ''}>
                         <i class="fas fa-eye"></i>
                         View Details
                     </button>
-                    <button class="service-add-btn" onclick="addToCart('${product.id}')">
+                    <button class="service-add-btn" onclick="addToCart('${product.id}')" ${isComingSoon ? 'disabled' : ''}>
                         <i class="fas fa-shopping-cart"></i>
                         Add to Cart
                     </button>
@@ -358,13 +381,15 @@ function createFeaturedServiceCard(service) {
     const discount = service.originalPrice !== service.discountedPrice 
         ? Math.round((1 - service.discountedPrice/service.originalPrice) * 100) 
         : 0;
+    const isAvailable = isServiceAvailable(service.id);
     
     return `
-        <div class="featured-service-card">
+        <div class="featured-service-card ${!isAvailable ? 'coming-soon-card' : ''}">
             <div class="featured-card-image">
                 <img src="${service.image}" alt="${service.name}" />
                 <div class="featured-service-label">${service.category.toUpperCase()}</div>
                 ${discount > 0 ? `<div class="featured-discount-badge">${discount}% OFF</div>` : ''}
+                ${!isAvailable ? '<div class="coming-soon-overlay">COMING SOON</div>' : ''}
             </div>
             <div class="featured-card-content">
                 <h3 class="featured-card-title">${service.name}</h3>
@@ -380,11 +405,11 @@ function createFeaturedServiceCard(service) {
                     </div>
                 </div>
                 <div class="featured-card-actions">
-                    <button class="featured-view-btn" onclick="showServiceDetail('${service.id}')">
+                    <button class="featured-view-btn" onclick="showServiceDetail('${service.id}')" ${!isAvailable ? 'disabled' : ''}>
                         <i class="fas fa-eye"></i>
                         View
                     </button>
-                    <button class="featured-add-btn" onclick="addToCart('${service.id}')">
+                    <button class="featured-add-btn" onclick="addToCart('${service.id}')" ${!isAvailable ? 'disabled' : ''}>
                         <i class="fas fa-plus"></i>
                         Add
                     </button>
@@ -396,6 +421,12 @@ function createFeaturedServiceCard(service) {
 
 // Cart functionality
 function addToCart(serviceId) {
+    // Check if service is available
+    if (!isServiceAvailable(serviceId)) {
+        showCartNotification('This service is coming soon!');
+        return;
+    }
+    
     const allServices = [
         ...servicesData.facials, 
         ...servicesData['lash-extensions'], 

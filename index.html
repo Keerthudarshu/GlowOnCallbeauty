@@ -102,6 +102,22 @@
                     <p>Eyebrows</p>
                     <div class="card-shine"></div>
                 </div>
+                <style>
+                @media (max-width: 600px) {
+                    .service-grid.enhanced.square-cards {
+                        display: grid !important;
+                        grid-template-columns: 1fr 1fr !important;
+                        gap: 12px !important;
+                        margin-right: 0 !important;
+                        padding-right: 0 !important;
+                        overflow-x: hidden !important;
+                    }
+                    .service-card.square-card {
+                        min-width: 0 !important;
+                        box-sizing: border-box !important;
+                    }
+                }
+                </style>
             </div>
 
             <!-- Most Booked Services -->
@@ -197,28 +213,31 @@
                 <h2>Shop by Products</h2>
             </div>
             <div class="product-categories">
-                <div class="product-category" onclick="showProductCategory('hair-products')">
-                    <div class="product-icon">
+                <div class="product-category" onclick="showProductCategory('hair-products')" style="position:relative;">
+                    <div class="product-icon" style="position:relative;">
                         <img src="assets/hair.jpeg" alt="Hair Products" />
+                        <div class="coming-soon-overlay" style="position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(128,128,128,0.5);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.1em;z-index:2;">Coming Soon</div>
                     </div>
                     <p>Hair Products</p>
                 </div>
-                <div class="product-category" onclick="showProductCategory('body-products')">
-                    <div class="product-icon">
+                <div class="product-category" onclick="showProductCategory('body-products')" style="position:relative;">
+                    <div class="product-icon" style="position:relative;">
                         <img src="assets/body products.jpg" alt="Body Products" />
+                        <div class="coming-soon-overlay" style="position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(128,128,128,0.5);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.1em;z-index:2;">Coming Soon</div>
                     </div>
                     <p>Body Products</p>
                 </div>
-                <div class="product-category" onclick="showProductCategory('face-products')">
-                    <div class="product-icon">
+                <div class="product-category" onclick="showProductCategory('face-products')" style="position:relative;">
+                    <div class="product-icon" style="position:relative;">
                         <img src="assets/face.jpeg" alt="Face Products" />
+                        <div class="coming-soon-overlay" style="position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(128,128,128,0.5);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.1em;z-index:2;">Coming Soon</div>
                     </div>
                     <p>Face Products</p>
                 </div>
             </div>
 
             <!-- Best Selling Packages -->
-            <div class="section-header">
+            <!-- <div class="section-header">
                 <h2>Best Selling Packages</h2>
             </div>
             <div class="package-cards">
@@ -247,7 +266,7 @@
                     </div>
                     <h3>10 BEAUTY SERVICES<br>1 PERFECT YOU!</h3>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Why GlowOnCall -->
             <div class="section-header">
@@ -269,26 +288,23 @@
                     </div>
                 </div>
                 <div class="feature-image">
-                    <img src="https://pixabay.com/get/g883d74d7c0f94303024b5dbc1218bb45071aa0b8d52ae5d30ff20136294b45bef8e803eddc7a49f540895abb4ad42b1a19a26f50e633ccc72e7ca1f966bef030_1280.jpg" alt="Beauty Service" />
+                    <img src="/assets/beauty service.jpg" alt="Beauty Service" />
                 </div>
             </div>
 
             <!-- Brand Partners -->
             <div class="section-header">
-                <h2>We use best Brands in 1-Time use packs</h2>
+                <h2>100% Purely Bhartiya Brand <img src="https://img.icons8.com/?size=100&id=HgrhrvtEzvc1&format=png&color=000000" alt="Indian Flag" style="height: 1.5em; vertical-align: middle; margin-left: 6px; border-radius:2px; box-shadow:0 1px 4px rgba(0,0,0,0.08);" /></h2>
             </div>
-            <div class="brand-logos">
-                <div class="brand-logo">GlowOnCall</div>
-                <div class="brand-logo">RICA</div>
-                <div class="brand-logo">ÉLAN</div>
-                <div class="brand-logo">L'ORÉAL</div>
-                <div class="brand-logo">O3+</div>
-                <div class="brand-logo">Streax</div>
+            <div class="live-cities-section" style=" margin: 16px 10px;">
+                <h3 style="font-weight:500;margin-bottom:8px; ">We Are Live In 50+ Cities</h3>
+                <div class="cities-list" style="font-size:1em;line-height:1.7;display:flex;flex-wrap:wrap;gap:8px; ">
+Whitefield | Indiranagar | Koramangala | Jayanagar | MG Road | Malleshwaram | Rajajinagar | Basavanagudi | BTM Layout | Marathahalli | Electronic City | Hebbal | Banashankari | HSR Layout | Yelahanka | KR Puram | Vijayanagar | Ulsoor | RT Nagar | Bellandur | Sarjapur Road | Bannerghatta Road | Kumaraswamy Layout | Hosur Road | Nagawara | Fraser Town | Shivajinagar | Majestic | Lalbagh | Domlur | Bommanahalli | Kengeri | Peenya | Sanjay Nagar | Mathikere | Nayandahalli | Hennur | Horamavu | Kalyan Nagar | JP Nagar | Arekere | Anjanapura | Uttarahalli | Chandra Layout | Nagarbhavi | Vidyaranyapura | Sadashivanagar | Cox Town | Richmond Town | Vasanth Nagar | Wilson Garden                </div>
             </div>
 
             <!-- Trust Section -->
             <div class="trust-section">
-                <h2>Trusted by<br>over 10 Lakh Women</h2>
+                <h2>Trusted by<br>over 10K Women</h2>
                 <p>Build with ❤️ by team GlowOnCall</p>
             </div>
         </section>

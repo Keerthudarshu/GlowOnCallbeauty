@@ -15,8 +15,46 @@
     z-index: 2;
     border-radius: 16px;
     letter-spacing: 2px;
-    border: 3px solid red;
-    box-shadow: 0 0 12px 2px red;
+    
+}
+
+/* Coming Soon Card Styles */
+.coming-soon-card {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.coming-soon-card .service-card-image,
+.coming-soon-card .featured-card-image {
+    position: relative;
+}
+
+.coming-soon-card button[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: #ccc;
+}
+
+.coming-soon-card button[disabled]:hover {
+    background-color: #ccc;
+}
+
+/* Featured service cards coming soon overlay */
+.featured-service-card .coming-soon-overlay {
+    border-radius: 12px;
+    font-size: 1.2rem;
+}
+
+/* Service card wrapper coming soon overlay */
+.service-card-wrapper .coming-soon-overlay {
+    border-radius: 12px;
+    font-size: 1.3rem;
+}
+
+/* Product card coming soon overlay */
+.service-card .coming-soon-overlay {
+    border-radius: 12px;
+    font-size: 1.3rem;
 }
 .square-card .service-icon img {
     width: 100%;
