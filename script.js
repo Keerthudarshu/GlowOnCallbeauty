@@ -571,7 +571,10 @@ function showSearchResults(results) {
             <button class="back-btn" onclick="showSection('home')">
                 <i class="fas fa-arrow-left"></i>
             </button>
-            <h1>Search Results</h1>
+            <h1 style="display:flex;align-items:center;gap:10px;">
+                <img src="logo.png" alt="GlowOnCall Logo" style="height:1.6em;vertical-align:middle;object-fit:contain;" />
+                Search Results
+            </h1>
         </div>
         <div class="services-list">
             ${results.length > 0 
