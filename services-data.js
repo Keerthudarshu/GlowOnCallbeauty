@@ -115,7 +115,7 @@ const servicesData = {
             name: 'Hybrid Lash Extension',
             description: 'Combination of classic and volume techniques. Offers more fullness while maintaining natural look.',
             originalPrice: 3500,
-            discountedPrice: 2999,
+            discountedPrice: 2499,
             duration: 150,
             image: 'assets/Lash/Hybrid Lash Extension.webp',
             category: 'lash-extensions',

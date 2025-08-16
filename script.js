@@ -12,7 +12,8 @@ const availableServices = [
     'combo-hydra-classic-derma',
     'brow-tint',
     'eyebrow-lamination',
-    'products'
+    'products',
+    'hybrid-lash'
 ];
 
 // Function to check if a service is available
