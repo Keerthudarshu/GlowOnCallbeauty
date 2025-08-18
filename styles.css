@@ -1,3 +1,64 @@
+/* Service Areas and Location Styling */
+.service-areas {
+    margin: 20px 0;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 12px;
+}
+
+.service-areas h3 {
+    color: #8B1538;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.service-areas p {
+    color: #666;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.locations-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.locations-grid .location-tag {
+    background: linear-gradient(135deg, #8B1538 0%, #a91d42 100%);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: inline-block;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+}
+
+.locations-grid .location-tag:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(139, 21, 56, 0.3);
+}
+
+@media (max-width: 768px) {
+    .locations-grid {
+        gap: 6px;
+    }
+    
+    .locations-grid .location-tag {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+    }
+    
+    .service-areas {
+        margin: 15px 0;
+        padding: 15px;
+    }
+}
+
 /* Coming Soon Overlay for Featured Services */
 .coming-soon-overlay {
     position: absolute;
