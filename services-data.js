@@ -41,19 +41,6 @@ const servicesData = {
             idealFor: 'Dull skin, dark spots, uneven skin tone'
         },
         {
-            id: 'korean-glass-skin',
-            name: 'Korean Glass Skin Facial',
-            description: 'Multi-step Korean skincare treatment for glass-like skin finish. Includes double cleansing, exfoliation, and hydration.',
-            originalPrice: 3000,
-            discountedPrice: 2499,
-            duration: 90,
-            image: 'assets/facial/Korean Glass Skin Facial.avif',
-            category: 'facials',
-            benefits: ['Glass-like glow', 'Deep hydration', 'Poreless appearance', 'Dewy finish'],
-            procedure: 'Double cleanse → Exfoliate → Essence → Mask → Seal moisture',
-            idealFor: 'All skin types seeking the Korean glass skin effect'
-        },
-        {
             id: 'charcoal-detox',
             name: 'Charcoal Detox Facial',
             description: 'Deep pore cleansing treatment with activated charcoal. Perfect for oily and acne-prone skin.',
@@ -92,6 +79,19 @@ const servicesData = {
             benefits: ['Smooth skin', 'Better product absorption', 'Removes peach fuzz', 'Instant results'],
             procedure: 'Cleanse → Dermaplaning → Soothing serum → Moisturize',
             idealFor: 'All skin types, pre-event treatment'
+        },
+        {
+            id: 'korean-glass-skin',
+            name: 'Korean Glass Skin Facial',
+            description: 'Multi-step Korean skincare treatment for glass-like skin finish. Includes double cleansing, exfoliation, and hydration.',
+            originalPrice: 3000,
+            discountedPrice: 2499,
+            duration: 90,
+            image: 'assets/facial/Korean Glass Skin Facial.avif',
+            category: 'facials',
+            benefits: ['Glass-like glow', 'Deep hydration', 'Poreless appearance', 'Dewy finish'],
+            procedure: 'Double cleanse → Exfoliate → Essence → Mask → Seal moisture',
+            idealFor: 'All skin types seeking the Korean glass skin effect'
         }
         
     ],
@@ -209,17 +209,6 @@ const servicesData = {
             services: ['Vitamin C Glow Facial', 'Classic Lash Extension', 'Dermaplaning']
         },
         {
-            id: 'combo-korean-classic-derma',
-            name: 'Korean Glass Skin + Classic Lash + Dermaplaning',
-            description: 'Korean skincare method combined with lash extensions and dermaplaning for ultimate glow.',
-            originalPrice: 6100,
-            discountedPrice: 3500,
-            duration: 240,
-            image: 'assets/facial/Korean Glass Skin Facial.avif',
-            category: 'combos',
-            services: ['Korean Glass Skin Facial', 'Classic Lash Extension', 'Dermaplaning']
-        },
-        {
             id: 'combo-charcoal-classic-derma',
             name: 'Charcoal Detox + Classic Lash + Dermaplaning',
             description: 'Deep cleansing charcoal facial with lash enhancement and skin exfoliation.',
@@ -251,6 +240,17 @@ const servicesData = {
             image: 'assets/facial/Collagen Renewal Facial.jpg',
             category: 'combos',
             services: ['Collagen Renewal Facial', 'Classic Lash Extension', 'Dermaplaning']
+        },
+        {
+            id: 'combo-korean-classic-derma',
+            name: 'Korean Glass Skin + Classic Lash + Dermaplaning',
+            description: 'Korean skincare method combined with lash extensions and dermaplaning for ultimate glow.',
+            originalPrice: 6100,
+            discountedPrice: 3500,
+            duration: 240,
+            image: 'assets/facial/Korean Glass Skin Facial.avif',
+            category: 'combos',
+            services: ['Korean Glass Skin Facial', 'Classic Lash Extension', 'Dermaplaning']
         }
     ]
    
