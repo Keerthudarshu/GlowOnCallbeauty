@@ -7,9 +7,17 @@ let previousSection = 'home';
 // Define available services (everything else will show "Coming Soon")
 const availableServices = [
     'hydrafacial',
-    'dermaplaning-facial', 
+    'dermaplaning-facial',
+     'collagen-renewal',
+     'vitamin-c-glow',
+     'charcoal-detox',
+     'golden-glow',
     'classic-lash',
     'combo-hydra-classic-derma',
+    'combo-vitamin-c-classic-derma',
+    'combo-charcoal-classic-derma',
+    'combo-golden-classic-derma',
+    'combo-collagen-classic-derma',
     'brow-tint',
     'eyebrow-lamination',
     'products',
